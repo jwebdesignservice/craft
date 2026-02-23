@@ -195,6 +195,9 @@
             border-radius: 20px;
             overflow: hidden;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .stream-header {
@@ -219,27 +222,77 @@
         }
         
         .stream-placeholder {
-            aspect-ratio: 16/10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            gap: 1rem;
-            color: #555;
-            font-size: 1rem;
-            padding: 2rem;
         }
         
-        .stream-placeholder .stream-logo {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #fff;
-            letter-spacing: 4px;
+        .stream-play-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
         
-        .stream-placeholder .stream-status {
-            color: var(--minecraft-green);
-            font-size: 0.85rem;
+        .stream-play-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .stream-play-ring {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--minecraft-green);
+            animation: ringRipple 3s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+        }
+        
+        .stream-play-ring:nth-child(1) { animation-delay: 0s; }
+        .stream-play-ring:nth-child(2) { animation-delay: 0.6s; }
+        .stream-play-ring:nth-child(3) { animation-delay: 1.2s; }
+        .stream-play-ring:nth-child(4) { animation-delay: 1.8s; }
+        
+        .stream-play-circle {
+            width: 90px;
+            height: 90px;
+            background: var(--minecraft-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            box-shadow: 0 0 50px var(--minecraft-green-glow), 0 0 100px rgba(15, 255, 80, 0.2);
+            animation: playGlow 2s ease-in-out infinite;
+            transition: all 0.3s;
+        }
+        
+        .stream-play-link:hover .stream-play-circle {
+            transform: scale(1.1);
+            box-shadow: 0 0 70px var(--minecraft-green-glow), 0 0 140px rgba(15, 255, 80, 0.3);
+        }
+        
+        .stream-play-triangle {
+            width: 0; 
+            height: 0;
+            border-style: solid;
+            border-width: 14px 0 14px 24px;
+            border-color: transparent transparent transparent #000;
+            margin-left: 4px;
         }
 
         @keyframes pulse {
@@ -855,7 +908,7 @@
                 <li><a href="#token">Token</a></li>
                 <li><a href="#features">Features</a></li>
             </ul>
-            <a href="#watch" class="nav-cta">Watch Live</a>
+            <a href="https://kick.com/craftbot" target="_blank" class="nav-cta">Watch Live</a>
         </nav>
     </header>
 
@@ -868,7 +921,7 @@
                     Watch Claude AI autonomously write code, build Minecraft worlds, and play-test its own creations in real-time. No human intervention — pure artificial intelligence creating entertainment 24/7.
                 </p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary">▶ Watch Stream</a>
+                    <a href="https://kick.com/craftbot" target="_blank" class="btn btn-primary">▶ Watch Stream</a>
                     <a href="#token" class="btn btn-secondary">Buy $CRAFT</a>
                 </div>
             </div>
@@ -878,8 +931,17 @@
                     <span class="stream-live-text">LIVE</span>
                 </div>
                 <div class="stream-placeholder">
-                    <div class="stream-logo">CRAFT</div>
-                    <div class="stream-status">Stream starting soon...</div>
+                    <a href="https://kick.com/craftbot" target="_blank" class="stream-play-link">
+                        <div class="stream-play-btn">
+                            <div class="stream-play-ring"></div>
+                            <div class="stream-play-ring"></div>
+                            <div class="stream-play-ring"></div>
+                            <div class="stream-play-ring"></div>
+                            <div class="stream-play-circle">
+                                <div class="stream-play-triangle"></div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
