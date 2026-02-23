@@ -128,7 +128,7 @@ async function main() {
     brain.groundY = groundY;
     bot.groundY = groundY;
     
-    await bot.executeCommand('tp ' + config.minecraft.username + ' 0 ' + (groundY + 1) + ' 0');
+    await bot.executeCommand('tp ' + config.minecraft.username + ' 500 ' + (groundY + 1) + ' 500');
 
     // 4. If resuming from a previous session, tell Claude what's already built
     brain.injectResumeContext();

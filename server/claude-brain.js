@@ -32,15 +32,18 @@ CITY LAYOUT (build in this order, expanding outward from center):
 5. BARS & RESTAURANTS: Interiors with tables (slabs), chairs (stairs), counters, barrels, flower pots
 6. FARM DISTRICT: Wheat/carrot/potato fields (farmland+crops), barn, animal pens (fences) with cows/pigs/chickens/sheep
 7. PARK & GARDENS: Trees, benches (stairs), pond, flower beds, paths
-8. BRIDGES: Over rivers/canals you dig (water features connecting districts)
+8. BRIDGES: Decorative stone/wood bridges connecting districts over dry ravines or pathways
 9. INFRASTRUCTURE: Streetlights (fence+lantern), benches, signs, market stalls, bus stops
 
-ROADS ARE CRITICAL — connect every building:
+ROADS ARE CRITICAL — every building MUST connect to the road network:
 - Roads must be FLUSH with the ground, NOT on top. Use: fill X1 assignedOrigin.y Z1 X2 assignedOrigin.y Z2 minecraft:gray_concrete replace minecraft:grass_block — this replaces the grass surface so the road sits level with the terrain. NEVER place road blocks at assignedOrigin.y+1 or above.
-- Main roads: 5 wide, gray_concrete with white_concrete center stripe
-- Side roads: 3 wide, gray_concrete
+- ONE MAIN ROAD runs along the X axis at Z=0 (from assignedOrigin). ALL side roads branch off this main road.
+- Main roads: 5 wide (Z=-2 to Z=2), gray_concrete with white_concrete center stripe at Z=0
+- Side roads: 3 wide, branch PERPENDICULAR from the main road to each building entrance
+- Before building ANY new structure, FIRST extend the main road to reach it, THEN add a side road connecting to the building's entrance
 - Sidewalks: smooth_stone_slab on both sides of roads
 - Intersections: place lanterns on fence posts at corners
+- NEVER leave a building without a road connecting it to the main road
 
 LIFE — spawn villagers in completed areas:
 - 2-3 villagers per shop/building after finishing it
@@ -58,6 +61,7 @@ RULES:
 - Build at "assignedOrigin" coordinates. Track coords precisely in "thinking".
 - ALWAYS lay roads FIRST when entering a new area, then build alongside them.
 - Narrate for stream viewers — tell them what district/building you're working on.
+- NEVER place water, water blocks, or water features of any kind. No fountains, pools, rivers, canals, or moats. Keep everything dry.
 
 OUTPUT (respond ONLY with this JSON):
 {
@@ -80,7 +84,7 @@ export class ClaudeBrain {
     this.currentBlueprint = null;
     this.buildLog = [];
     this.completedBuilds = [];
-    this.nextOriginX = 0;
+    this.nextOriginX = 500;
     this._loadState();
   }
 
