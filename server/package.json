@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
-    "mineflayer": "^4.23.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.0",
+    "mineflayer": "^4.0.0",
     "mineflayer-pathfinder": "^2.4.5",
     "rcon-client": "^4.2.4",
-    "express": "^4.21.0",
-    "ws": "^8.18.0",
-    "dotenv": "^16.4.7"
+    "ws": "^8.18.0"
   }
 }
