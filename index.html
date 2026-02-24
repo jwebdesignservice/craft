@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRAFT - AI Minecraft Builder | Watch Claude Build Autonomously</title>
-    <meta name="description" content="Watch Claude AI autonomously write code, build Minecraft worlds, and play-test its own creations in real-time. No human intervention.">
+    <title>CLAUDEMINE - AI Minecraft Builder | Watch Claude Build Autonomously</title>
+    <meta name="description" content="Watch Claude AI autonomously build Minecraft worlds in real-time. No human intervention — pure artificial intelligence creating entertainment 24/7.">
     
-    <link rel="icon" type="image/png" sizes="32x32" href="logo.png?v=3">
-    <link rel="icon" type="image/png" sizes="16x16" href="logo.png?v=3">
-    <link rel="apple-touch-icon" sizes="180x180" href="logo.png?v=3">
-    <link rel="shortcut icon" href="logo.png?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.png?v=4">
+    <link rel="icon" type="image/png" sizes="16x16" href="logo.png?v=4">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.png?v=4">
+    <link rel="shortcut icon" href="logo.png?v=4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Inter+Tight:wght@900&display=swap" rel="stylesheet">
@@ -52,6 +52,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .mobile-menu-toggle:hover {
+            color: var(--minecraft-green);
         }
         
         .logo {
@@ -102,7 +118,7 @@
             background: rgba(255, 255, 255, 0.05);
         }
         
-        .nav-cta {
+        .nav-cta-desktop {
             background: var(--minecraft-green);
             color: #000 !important;
             font-weight: 700;
@@ -111,11 +127,27 @@
             border-radius: 50px;
             text-decoration: none;
             transition: all 0.3s;
+            white-space: nowrap;
+            display: inline-block;
         }
         
-        .nav-cta:hover {
+        .nav-cta-desktop:hover {
             box-shadow: 0 4px 20px var(--minecraft-green-glow);
             transform: translateY(-1px);
+        }
+        
+        .nav-cta-mobile {
+            display: none;
+        }
+        
+        .nav-cta-link {
+            background: var(--minecraft-green) !important;
+            color: #000 !important;
+        }
+        
+        .nav-cta-link:hover {
+            background: var(--minecraft-green) !important;
+            box-shadow: 0 4px 20px var(--minecraft-green-glow);
         }
 
         /* ==================== HERO (Stacked Layout) ==================== */
@@ -1024,24 +1056,215 @@
 
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 1024px) {
-            .stream-container { flex-direction: column; }
-            .hero-stream { width: 100%; }
-            .command-feed { width: 100%; max-height: 400px; }
-            .token-container { grid-template-columns: 1fr; text-align: center; }
-            .logo-circle { width: 180px; height: 180px; }
-            .logo-text-big { font-size: 3rem; }
-            .process-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .stream-container { 
+                flex-direction: column; 
+                gap: 1rem;
+            }
+            
+            .hero-stream { 
+                width: 100%; 
+            }
+            
+            .command-feed { 
+                width: 100%; 
+                max-height: 400px; 
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .token-container { 
+                grid-template-columns: 1fr; 
+                text-align: center; 
+            }
+            
+            .logo-circle { 
+                width: 180px; 
+                height: 180px; 
+            }
+            
+            .logo-text-big { 
+                font-size: 3rem; 
+            }
+            
+            .process-grid { 
+                grid-template-columns: 1fr; 
+                max-width: 500px; 
+                margin-left: auto; 
+                margin-right: auto; 
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
         }
         
         @media (max-width: 768px) {
-            nav { flex-wrap: wrap; gap: 1rem; justify-content: center; }
-            .hero { padding: 8rem 1rem 4rem; }
-            .hero-text h1 { font-size: 2.5rem; }
-            .stream-container { flex-direction: column; }
-            .hero-stream { width: 100%; }
-            .command-feed { width: 100%; max-height: 400px; }
-            .token-container { padding: 2rem; gap: 2rem; }
-            .footer-content { flex-direction: column; gap: 1.5rem; text-align: center; }
+            header {
+                position: fixed;
+            }
+            
+            nav {
+                padding: 1rem;
+                flex-wrap: nowrap;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-pill {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(20px);
+                border: 1px solid var(--border-color);
+                border-radius: 0;
+                padding: 2rem 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
+                display: none;
+                z-index: 999;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            }
+            
+            .nav-pill.active {
+                display: flex;
+            }
+            
+            .nav-pill a {
+                padding: 1rem;
+                font-size: 1rem;
+                border-radius: 12px;
+                text-align: center;
+            }
+            
+            .nav-cta-desktop {
+                display: none;
+            }
+            
+            .nav-cta-mobile {
+                display: block;
+                margin-top: 0.5rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--border-color);
+            }
+            
+            .nav-cta-link {
+                display: block;
+                width: 100%;
+            }
+            
+            .hero { 
+                padding: 6rem 1rem 3rem; 
+            }
+            
+            .hero-text h1 { 
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+            
+            .hero-description {
+                font-size: 0.95rem;
+                margin: 1.5rem auto 0;
+            }
+            
+            .stream-container { 
+                flex-direction: column; 
+                gap: 1rem;
+            }
+            
+            .hero-stream { 
+                width: 100%;
+                border-radius: 16px;
+            }
+            
+            .command-feed { 
+                width: 100%; 
+                max-height: 350px;
+                padding: 1rem;
+                border-radius: 16px;
+            }
+            
+            .command-feed-title {
+                font-size: 0.8rem;
+            }
+            
+            .command-text {
+                font-size: 0.75rem;
+            }
+            
+            .ticker {
+                transform: rotate(-1deg);
+            }
+            
+            .ticker-item {
+                font-size: 0.7rem;
+            }
+            
+            .process {
+                padding: 4rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .process-card {
+                margin-top: 2.5rem;
+            }
+            
+            .process-number {
+                top: -50px;
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+            
+            .token-container { 
+                padding: 2rem 1.5rem; 
+                gap: 2rem; 
+            }
+            
+            .token-info h2 {
+                font-size: 1.75rem;
+            }
+            
+            .contract-address {
+                font-size: 0.7rem;
+            }
+            
+            .features {
+                padding: 4rem 1rem;
+            }
+            
+            .feature-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .cta-section {
+                padding: 4rem 1rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content { 
+                flex-direction: column; 
+                gap: 1.5rem; 
+                text-align: center; 
+            }
         }
     </style>
 </head>
@@ -1049,15 +1272,19 @@
     <header>
         <nav>
             <a href="#" class="logo">
-                <img src="logo.png" alt="CRAFT" width="30" height="30" style="object-fit: contain;">
-                CRAFT
+                <img src="logo.png" alt="CLAUDEMINE" width="30" height="30" style="object-fit: contain;">
+                CLAUDEMINE
             </a>
-            <ul class="nav-pill">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span id="menuIcon">☰</span>
+            </button>
+            <ul class="nav-pill" id="navMenu">
                 <li><a href="#process">How It Works</a></li>
                 <li><a href="#token">Token</a></li>
                 <li><a href="#features">Features</a></li>
+                <li class="nav-cta-mobile"><a href="#token" class="nav-cta-link">Buy $MINE</a></li>
             </ul>
-            <a href="#token" class="nav-cta">Buy $CRAFT</a>
+            <a href="#token" class="nav-cta nav-cta-desktop">Buy $MINE</a>
         </nav>
     </header>
 
@@ -1115,7 +1342,7 @@
                 </div>
             </div>
             <p class="hero-description">
-                Watch Claude AI autonomously write code, build Minecraft worlds, and play-test its own creations in real-time. No human intervention — pure artificial intelligence creating entertainment 24/7.
+                Autonomous AI writing code, building Minecraft worlds, testing games. No humans. No breaks. Pure machine creativity on repeat.
             </p>
         </section>
 
@@ -1123,7 +1350,7 @@
         <div class="ticker">
             <div class="ticker-row">
                 <div class="ticker-content">
-                    <span class="ticker-item">AI POWERED</span><span class="ticker-item">$CRAFT</span><span class="ticker-item">AUTONOMOUS</span><span class="ticker-item">MINECRAFT</span><span class="ticker-item">SOLANA</span><span class="ticker-item">LIVE 24/7</span><span class="ticker-item">AI POWERED</span><span class="ticker-item">$CRAFT</span><span class="ticker-item">AUTONOMOUS</span><span class="ticker-item">MINECRAFT</span><span class="ticker-item">SOLANA</span><span class="ticker-item">LIVE 24/7</span><span class="ticker-item">AI POWERED</span><span class="ticker-item">$CRAFT</span><span class="ticker-item">AUTONOMOUS</span><span class="ticker-item">MINECRAFT</span><span class="ticker-item">SOLANA</span><span class="ticker-item">LIVE 24/7</span><span class="ticker-item">AI POWERED</span><span class="ticker-item">$CRAFT</span><span class="ticker-item">AUTONOMOUS</span><span class="ticker-item">MINECRAFT</span><span class="ticker-item">SOLANA</span><span class="ticker-item">LIVE 24/7</span>
+                    <span class="ticker-item">AI POWERED</span><span class="ticker-item">$MINE</span><span class="ticker-item">CLAUDEMINE</span><span class="ticker-item">MINECRAFT</span><span class="ticker-item">SOLANA</span><span class="ticker-item">LIVE 24/7</span><span class="ticker-item">AI POWERED</span><span class="ticker-item">$MINE</span><span class="ticker-item">CLAUDEMINE</span><span class="ticker-item">MINECRAFT</span><span class="ticker-item">SOLANA</span><span class="ticker-item">LIVE 24/7</span><span class="ticker-item">AI POWERED</span><span class="ticker-item">$MINE</span><span class="ticker-item">CLAUDEMINE</span><span class="ticker-item">MINECRAFT</span><span class="ticker-item">SOLANA</span><span class="ticker-item">LIVE 24/7</span><span class="ticker-item">AI POWERED</span><span class="ticker-item">$MINE</span><span class="ticker-item">CLAUDEMINE</span><span class="ticker-item">MINECRAFT</span><span class="ticker-item">SOLANA</span><span class="ticker-item">LIVE 24/7</span>
                 </div>
             </div>
             <div class="ticker-row">
@@ -1189,12 +1416,12 @@
             <div class="token-container">
                 <div class="token-logo">
                     <div class="logo-circle">
-                        <img src="logo.png" alt="CRAFT" width="140" height="140" style="object-fit: contain;">
+                        <img src="logo.png" alt="CLAUDEMINE" width="140" height="140" style="object-fit: contain;">
                     </div>
                 </div>
                 <div class="token-info">
-                    <h2><span class="gradient-text">$CRAFT</span> Token</h2>
-                    <p>The native token powering the CRAFT ecosystem. Watch streams, vote on games, earn rewards.</p>
+                    <h2><span class="gradient-text">$MINE</span> Token</h2>
+                    <p>The native token powering the CLAUDEMINE ecosystem. Watch streams, vote on builds, earn rewards.</p>
                     <div class="contract-address-box">
                         <span class="contract-label">CA</span>
                         <span class="contract-address">CONTRACT ADDRESS COMING SOON</span>
@@ -1246,7 +1473,7 @@
             <p>Watch AI build Minecraft worlds in real-time. Join the stream now.</p>
             <div class="cta-buttons">
                 <a href="https://kick.com/craftbot" target="_blank" class="btn btn-primary">▶ Watch Live</a>
-                <a href="#token" class="btn btn-secondary">$CRAFT →</a>
+                <a href="#token" class="btn btn-secondary">$MINE →</a>
             </div>
         </section>
     </main>
@@ -1254,18 +1481,45 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <img src="logo.png" alt="CRAFT" width="24" height="24" style="object-fit: contain;">
-                CRAFT
+                <img src="logo.png" alt="CLAUDEMINE" width="24" height="24" style="object-fit: contain;">
+                CLAUDEMINE
             </div>
             <div class="footer-social">
-                <a href="#" class="social-icon" title="Twitter"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                <a href="https://x.com/i/communities/2025970749450903706" target="_blank" class="social-icon" title="Twitter/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
                 <a href="https://kick.com/craftbot" target="_blank" class="social-icon" title="Kick"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" stroke="none"><path d="M1.2 2.4h5.4v6l3-3h6l-4.8 4.8L15.6 15h-6l-3-3v6H1.2V2.4z"/></svg></a>
             </div>
-            <div class="footer-copy">© 2026 CRAFT</div>
+            <div class="footer-copy">© 2026 CLAUDEMINE</div>
         </div>
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuIcon.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-pill a, .nav-cta-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuIcon.textContent = '☰';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                menuIcon.textContent = '☰';
+            }
+        });
+        
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
