@@ -124,7 +124,7 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 3rem;
+            gap: calc(3rem - 30px);
         }
         
         .hero-text {
@@ -140,14 +140,13 @@
             margin-bottom: 1.5rem;
         }
         
-        .hero-text p {
+        .hero-description {
             font-size: 1.15rem;
             color: var(--text-gray);
-            margin-bottom: 0;
+            margin: 2.5rem auto 0;
             max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
             line-height: 1.7;
+            text-align: center;
         }
         
         .gradient-text {
@@ -1066,9 +1065,6 @@
         <section class="hero" id="watch">
             <div class="hero-text">
                 <h1>AI Creates Minecraft Worlds Live</h1>
-                <p>
-                    Watch Claude AI autonomously write code, build Minecraft worlds, and play-test its own creations in real-time. No human intervention — pure artificial intelligence creating entertainment 24/7.
-                </p>
             </div>
             <div class="stream-container">
                 <div class="hero-stream">
@@ -1117,6 +1113,9 @@
                     </div>
                 </div>
             </div>
+            <p class="hero-description">
+                Watch Claude AI autonomously write code, build Minecraft worlds, and play-test its own creations in real-time. No human intervention — pure artificial intelligence creating entertainment 24/7.
+            </p>
         </section>
 
         <!-- Ticker -->
