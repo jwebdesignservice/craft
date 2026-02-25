@@ -1424,7 +1424,7 @@
                     <p>The native token powering the CLAUDEMINE ecosystem. Watch streams, vote on builds, earn rewards.</p>
                     <div class="contract-address-box">
                         <span class="contract-label">CA</span>
-                        <span class="contract-address">CONTRACT ADDRESS COMING SOON</span>
+                        <span class="contract-address">F2vsnbfCj3A2Tw6R18WxygUDNSTB4ERgLDCcwTG2pump</span>
                         <button class="copy-btn" title="Copy address"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--minecraft-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                     </div>
                     <div class="token-cta">
@@ -1582,12 +1582,14 @@
         const copyBtn = document.querySelector('.copy-btn');
         if (copyBtn) {
             copyBtn.addEventListener('click', () => {
-                const address = document.querySelector('.contract-address').textContent;
-                if (address !== 'CONTRACT ADDRESS COMING SOON') {
-                    navigator.clipboard.writeText(address);
-                    copyBtn.textContent = '✓';
-                    setTimeout(() => { copyBtn.textContent = '📋'; }, 2000);
-                }
+                const address = document.querySelector('.contract-address').textContent.trim();
+                navigator.clipboard.writeText(address);
+                copyBtn.innerHTML = '✓';
+                copyBtn.style.color = 'var(--minecraft-green)';
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--minecraft-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+                    copyBtn.style.color = '';
+                }, 2000);
             });
         }
     </script>

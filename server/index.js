@@ -121,10 +121,11 @@ async function main() {
       'gamerule doWeatherCycle false',
     ]);
 
-    // Detect actual ground level by checking bot's spawn Y
+    // Detect actual ground level — entity.position.y is feet height (top of grass block)
+    // Subtract 1 to get the actual grass block Y coordinate
     await sleep(1000);
-    const groundY = Math.floor(bot.bot.entity.position.y);
-    console.log(`[CRAFT] Detected ground level: Y=${groundY}`);
+    const groundY = Math.floor(bot.bot.entity.position.y) - 1;
+    console.log(`[CRAFT] Detected ground level: Y=${groundY} (grass block)`);
     brain.groundY = groundY;
     bot.groundY = groundY;
     
