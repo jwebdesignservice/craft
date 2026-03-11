@@ -1,14 +1,14 @@
 # memory/discord/memory-market.md
 
 ## Channel: #memory-market
-## Project: MemoryMarket — AI agent memory marketplace on Solana
+## Project: MemoryMarket ï¿½ AI agent memory marketplace on Solana
 
 ---
 
 ## Skills Library Plan
 [2026-02-26] JMoon building a skills library to bundle with MemoryMarket
-[2026-02-26] First skill uploaded: daily-rhythm — start/end of day protocols for AI agents
-[2026-02-26] More skills incoming — JMoon will upload the rest
+[2026-02-26] First skill uploaded: daily-rhythm ï¿½ start/end of day protocols for AI agents
+[2026-02-26] More skills incoming ï¿½ JMoon will upload the rest
 [2026-02-26] Task: design packaging format + integrate skills into marketplace before next upload
 
 ## Site Status
@@ -20,13 +20,13 @@
 ## Fixes Made Today
 [2026-02-26] Added NEXT_PUBLIC_SOLANA_NETWORK=devnet to Vercel
 [2026-02-26] Created /auth/nonce + /auth/verify endpoints (JWT wallet auth)
-[2026-02-26] Fixed /marketplace/listings DNS error — added in-memory demo fallback
+[2026-02-26] Fixed /marketplace/listings DNS error ï¿½ added in-memory demo fallback
 [2026-02-26] Added auth.py to backend, registered in main.py + __init__.py
-[2026-02-26] All endpoints verified: health, memory/search, marketplace/listings, auth — all 200
+[2026-02-26] All endpoints verified: health, memory/search, marketplace/listings, auth ï¿½ all 200
 
 ## Participants
-- JMoon (jmoon_174) — project owner
-- Jack (wils/jackwilson7) — dev/infra
+- JMoon (jmoon_174) ï¿½ project owner
+- Jack (wils/jackwilson7) ï¿½ dev/infra
 
 ## Session Update 2026-03-10 (afternoon)
 
@@ -61,8 +61,26 @@ Episodic + Relational categories still need building (sandbox timed out)
 - RoundtableSpace Claude Code workflow -- image only, no GitHub link
 - Local backend health check timeout -- firewall/AV investigation needed next session
 
+## Session Update â€” 2026-03-11
+
+### Status: Devnet Testing Complete âœ…
+- 41/41 audit checks passing
+- Buy flow: real Phantom tx, fee split 95/4/1 verified on-chain
+- Sell flow: memory created + auto-listed with creator wallet
+- Wallet connection fixed (autoConnect, eager adapters, connected state)
+- 28 listings live on marketplace
+
+### JMoon Skills Wallet
+- Valid devnet wallet: 4YAurT42wEVTyVrhGx7m5sJ87HrmrVBqCEY2Y714SyRK
+- Old wallet was invalid base58 (had lowercase 'l') â€” fixed
+- Keypair stored in memory/2026-03-11.md (local only)
+- Replace with real mainnet wallet before launch
+
+### Jack's Phantom (devnet)
+- GxoqVCoUiS6KFZtffUG9gKTbq2Sa3AdxgZqVy67sh1gE
+
 ### Next Priority
-- Diagnose localhost:8001 timeout
 - Create Episodic + Relational skills (re-run sandbox sub-agent)
-- Get Superpowers repo link from JMoon
-- Skills ingestion pipeline (bulk upload to /memory/create)
+- Deploy Anchor programs on-chain (get program IDs)
+- Add wallet signature verification to /memory/create
+- Get JMoon's real mainnet wallet for skills creator_wallet
