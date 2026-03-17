@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd C:\\\\Users\\\\Jack\\\\Desktop\\\\Website-projects\\\\Claude-terminal-projects\\\\htdocs\\\\Memory-market:*)"
+    ]
+  }
+}

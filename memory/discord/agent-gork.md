@@ -44,9 +44,11 @@ Reply-only bot for @Agent_Gork (Twitter ID: 2032857947630612486)
 - `DEPLOY-RAILWAY.md` - Full Railway deployment guide for 24/7 uptime
 
 ## Current Status
-- ✅ Running locally on wils' machine
-- ⚠️ Requires terminal window to stay open + computer on
-- 📝 Ready for Railway deployment for 24/7 uptime
+- ✅ LIVE - Bot running and replying (first reply: "promo? dm the void i aint checkin")
+- ✅ Auto-monitoring active (cron checks every 5 min, auto-restarts if down)
+- ✅ Instant alerts to this Discord channel if issues detected
+- 📁 Running at: `C:\Users\Jack\.openclaw\agents\agent-gork-staging\bot-v2\bot-v2`
+- 🔧 Manual restart script: `AUTO-RESTART.ps1`
 
 ## Important Links
 - Twitter: @Agent_Gork

@@ -1,0 +1,17 @@
+{
+  "name": "daily-rhythm",
+  "version": "1.0.0",
+  "description": "Start-of-day and end-of-day protocols for any AI agent with persistent memory. Morning reports, end-of-day handovers, and memory capture rules.",
+  "author": "JMoon",
+  "installedAt": "2026-02-26T18:13:00Z",
+  "files": [
+    "SKILL.md",
+    "references/report-format.md",
+    "references/handover-format.md",
+    "references/memory-triggers.md"
+  ],
+  "triggers": [
+    "First message of the day (greeting)",
+    "End-of-day signals (wrapping up, done for today, etc.)"
+  ]
+}

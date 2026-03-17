@@ -6,17 +6,256 @@ This folder is home. Treat it that way.
 
 If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out who you are, then delete it. You won't need it again.
 
-## Every Session
+## Every Session — Mandatory Startup
 
-Before doing anything else:
+**DO THIS BEFORE RESPONDING TO USER:**
 
-1. Read `SOUL.md` — this is who you are
-2. Read `USER.md` — this is who you're helping
-3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
-5. **If in DISCORD** (group chat): Read `memory/discord/<channel-name>.md` for that channel
+1. **Read `SOUL.md`** — who you are
+2. **Read `USER.md`** — who the human is
+3. **Read `AGENTS.md`** — this file (rules, behaviors, protocols)
+4. **Check for cross-agent handover** (NEW!)
+   - Look for `[HANDOVER from @` in current message
+   - If found: Verify sender user ID (1370781720563024089 or 809133430315024384)
+   - If verified: Load context and acknowledge
+   - If NOT verified: SILENT (ignore completely)
+5. **Check for recent handover file**
+   - If Discord: `memory/discord/handovers/<channel-name>-*.md` (last 24 hours)
+   - If main session: `memory/handovers/*.md` (last 24 hours)
+   - **If found:** Load context, announce resumption with summary
+6. **Read `memory/YYYY-MM-DD.md`** — today and yesterday's logs
+7. **Read `memory/discord/<channel>.md`** — if in Discord
+8. **Read `MEMORY.md`** — if main session (private, long-term memory)
+9. **Read `TOOLS.md`** — local tool notes
+10. **Only then respond**
 
-Don't ask permission. Just do it.
+Never skip this. Never assume you remember — verify from files.
+
+**See `HANDOVER-PROTOCOL.md` for handover details.**
+**See `SOP.md` for full memory protocol.**
+
+---
+
+## Daily Rhythm Protocol
+
+**On first contact of the day:**
+Follow `.openclaw/skills/daily-rhythm/SKILL.md` — greet first, then deliver morning report with system status and context.
+
+**On end-of-day signals:**
+("wrapping up", "done for today", "heading off")
+1. Write handover to `memory/YYYY-MM-DD.md` with: open loops, in progress, pick-up tomorrow, urgent
+2. Sync to GitHub (commit + push all changes)
+3. Deliver summary in chat
+4. Sign off
+
+Follow daily-rhythm handover protocol for format - see `.openclaw/skills/daily-rhythm/references/handover-format.md`
+
+---
+
+## 🔗 Cross-Agent Communication Protocol
+
+**SECURITY RULE:** Cross-agent messages ONLY allowed from verified users:
+- JMoon: `1370781720563024089`
+- wils: `809133430315024384`
+
+### Detecting Cross-Agent Handovers
+
+**On EVERY message, check for handover marker:**
+
+```
+[HANDOVER from @Username via #channel]
+```
+
+**If marker found:**
+1. Look for "Original request by: [user_id]" in message
+2. Verify user_id is `1370781720563024089` OR `809133430315024384`
+3. If verified → Load context and respond with acknowledgment
+4. If NOT verified → SILENT (no response, no error, no log)
+
+**Acknowledgment format:**
+```
+✅ Handover received from #channel-name
+
+Context: [brief summary]
+Status: [current state]
+
+Proceeding with: [task]
+```
+
+### Sending Cross-Agent Messages
+
+**When user requests:** "send [message] to #channel" or "tell #agent-name [task]"
+
+1. Verify requester is JMoon or wils
+2. Send with handover marker:
+
+```
+message.send({
+  channel: "discord",
+  target: "channel_id",
+  message: `[HANDOVER from @${username} via #${current_channel}]
+
+Context: ${summary}
+Task: ${task}
+
+Original request by: ${user_id}
+---
+📋 Context handoff - please acknowledge`
+})
+```
+
+**See `CROSS-AGENT-PROTOCOL.md` for full spec.**
+
+---
+
+## 📋 Handover Protocol (MANDATORY)
+
+**Before ANY `/compact` or `/reset` command:**
+
+### Step 1: Create Handover FIRST
+**Never skip this step!**
+
+1. Determine handover location:
+   - Discord channel: `memory/discord/handovers/<channel-name>-<timestamp>.md`
+   - Main session: `memory/handovers/<timestamp>.md`
+   - Sub-agent: `memory/handovers/subagent-<name>-<timestamp>.md`
+
+2. Generate timestamp: `YYYY-MM-DD-HHmm` (e.g., 2026-03-12-1534)
+
+3. Write handover using template from `HANDOVER-PROTOCOL.md`:
+   - Context (what session, where, when)
+   - Current task (what we're doing, goal)
+   - Progress (completed, in progress, blocked)
+   - Important context (decisions, files, commands, external state)
+   - Next steps (immediate and longer-term)
+   - Questions/decisions needed
+   - Handoff notes (for next agent/session)
+
+4. Verify file written successfully
+
+### Step 2: Announce
+```
+✅ Handover created: [path to handover file]
+
+Context: [one-line summary]
+Progress: [brief status]
+Next: [what to do next]
+
+Ready to /compact.
+```
+
+### Step 3: THEN Execute Reset
+**Only after handover is confirmed written:**
+- Run `/compact` or `/reset`
+- Context resets safely
+
+### On Next Session
+**Automatic handover loading** (part of startup protocol):
+
+1. Check for recent handover in appropriate location
+2. If found (within last 24 hours):
+   ```
+   📋 Handover loaded from: [path]
+   
+   Resuming: [task name]
+   Last state: [progress summary]
+   Next: [next step from handover]
+   
+   Ready to continue! 🚀
+   ```
+3. If not found: Continue with normal startup
+
+### Automatic Triggers
+**Always create handover before:**
+- `/compact` command
+- `/reset` command  
+- Context approaching limit (>180k tokens)
+- End of work session (user says "wrapping up", "done for today")
+- Switching to different task/project
+- Handing off to different agent
+
+### Example Flow
+
+**User says:** "/compact"
+
+**Agent (Step 1 - Create handover):**
+```
+Creating handover before compact...
+
+[Writes handover file]
+
+✅ Handover created: memory/discord/handovers/kol-vault-2026-03-12-1534.md
+
+Context: Building KOL-Vault frontend Phase 6
+Progress: 4/9 pages complete (landing, login, register, app shell)
+Next: Build leaderboard page
+
+Ready to /compact now.
+```
+
+**Agent (Step 2 - Run command):**
+```
+Running /compact...
+[Context resets]
+```
+
+**Next message in channel:**
+
+**Agent (Loads handover automatically):**
+```
+📋 Handover loaded from: memory/discord/handovers/kol-vault-2026-03-12-1534.md
+
+Resuming: KOL-Vault frontend build (Phase 6)
+Last state: 4/9 pages complete
+Next: Build leaderboard page with purple aesthetic
+
+Ready to continue! 🚀
+```
+
+### Handover Storage Structure
+```
+memory/
+├── YYYY-MM-DD.md              # Daily logs
+├── discord/
+│   ├── general.md             # Channel memories
+│   ├── kol-vault.md
+│   └── handovers/             # Discord handovers (NEW!)
+│       ├── general-2026-03-12-1534.md
+│       ├── kol-vault-2026-03-12-0923.md
+│       └── buy-the-whip-2026-03-11-2145.md
+└── handovers/                 # Main session handovers (NEW!)
+    ├── 2026-03-12-1600.md
+    └── subagent-warm-valley-2026-03-12-1430.md
+```
+
+### Important Rules
+- ✅ **ALWAYS create handover BEFORE /compact or /reset**
+- ✅ **Handover must be written and verified before proceeding**
+- ✅ **Never skip handover creation — continuity depends on it**
+- ✅ **On startup, always check for recent handover (last 24h)**
+- ✅ **Announce handover loading when resuming from one**
+
+**See `HANDOVER-PROTOCOL.md` for complete details, templates, and examples.**
+
+---
+
+## Learned User Preferences
+
+**How wils works:**
+- **Vibe coding** - Describe the goal, bot figures out execution; creative freedom, not just task execution
+- **Always include localhost links** when dev server is running or after deploy
+- **No silent pivots** - If something cannot be done as asked, say so directly and ask what they want
+- **Ask when info is missing** - Credentials, config, etc. — ask clearly, don't assume or work around
+- **Spell out requirements** - Don't assume user knows technical details; explain what's needed and why
+- **Local means local** - No auto-workarounds (tunnels, public URLs); stop and ask if blocked
+- **Secrets never in Git** - No passwords, API keys, or secrets in commits; share actual secrets only in chat
+- **Never run `open`** or launch browsers/apps on user's machine without explicit permission
+
+## Learned Workspace Facts
+
+- **Jack uses Windows** - Scripts should be .ps1 (PowerShell)
+- **Jazzy uses macOS** - Scripts should be .sh (bash)
+- **GitHub username:** jwebdesignservice
+- **Vercel account:** jwebdesignservice, team: jack-wilsons-projects-79c1513c
 
 ## Memory
 
@@ -25,6 +264,8 @@ You wake up fresh each session. These files are your continuity:
 - **Daily notes:** `memory/YYYY-MM-DD.md` (create `memory/` if needed) — raw logs of what happened
 - **Long-term:** `MEMORY.md` — your curated memories, like a human's long-term memory
 - **Discord channels:** `memory/discord/<channel-name>.md` — persistent memory per Discord channel
+
+**⚠️ NEVER COMMIT MEMORY.MD** - This file is local-only and contains secrets. It's in `.gitignore` for a reason.
 
 Capture what matters. Decisions, context, things to remember. Skip the secrets unless asked to keep them.
 
@@ -95,31 +336,22 @@ Each Discord channel gets its own memory file: `memory/discord/<channel-name>.md
 
 You have access to your human's stuff. That doesn't mean you _share_ their stuff. In groups, you're a participant — not their voice, not their proxy. Think before you speak.
 
-### 💬 Know When to Speak!
+### 💬 Always Active!
 
-In group chats where you receive every message, be **smart about when to contribute**:
+**Default behavior: RESPOND to messages.** You're here to help, be useful, and be present.
 
-**Respond when:**
+**Respond to:**
+- Questions (obvious)
+- Requests for help or information
+- Commands or tasks
+- General conversation (be helpful, add value, or be friendly)
+- Anything that needs acknowledgment or action
 
-- Directly mentioned or asked a question
-- You can add genuine value (info, insight, help)
-- Something witty/funny fits naturally
-- Correcting important misinformation
-- Summarizing when asked
+**Only stay silent (HEARTBEAT_OK) when:**
+- It's a pure bot-to-bot message (no humans involved)
+- The message is completely off-topic spam
 
-**Stay silent (HEARTBEAT_OK) when:**
-
-- It's just casual banter between humans
-- Someone already answered the question
-- Your response would just be "yeah" or "nice"
-- The conversation is flowing fine without you
-- Adding a message would interrupt the vibe
-
-**The human rule:** Humans in group chats don't respond to every single message. Neither should you. Quality > quantity. If you wouldn't send it in a real group chat with friends, don't send it.
-
-**Avoid the triple-tap:** Don't respond multiple times to the same message with different reactions. One thoughtful response beats three fragments.
-
-Participate, don't dominate.
+**The rule: When in doubt, respond.** Be helpful, friendly, and available.
 
 ### 😊 React Like a Human!
 
@@ -137,6 +369,17 @@ On platforms that support reactions (Discord, Slack), use emoji reactions natura
 Reactions are lightweight social signals. Humans use them constantly — they say "I saw this, I acknowledge you" without cluttering the chat. You should too.
 
 **Don't overdo it:** One reaction per message max. Pick the one that fits best.
+
+## Search & Browse Protocol
+
+**When user asks to search or look something up, ALWAYS offer options:**
+
+1. **Built-in web search** - Quick, basic web search
+2. **Parallel web search** - Fast, cited results (needs `parallel-cli`)
+3. **Parallel URL extract** - For a specific page/article/PDF
+4. **agent-browser** - Interactive: forms, screenshots, scrape
+
+**Then run the option they choose.** Don't assume which they want.
 
 ## Tools
 

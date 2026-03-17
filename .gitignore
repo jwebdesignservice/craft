@@ -22,3 +22,12 @@ npm-debug.log*
 # OS
 .DS_Store
 Thumbs.db
+
+# Local-only memory (contains secrets)
+MEMORY.md
+workspace/MEMORY.md
+.cursor/hooks/state/
+
+# Logs (don't bloat repo)
+logs/
+*.log

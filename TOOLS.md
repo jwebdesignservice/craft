@@ -47,6 +47,7 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 - **Guide:** See `VERCEL_GUIDE.md` for full deployment instructions
 
 ### Active Projects
+- buy-the-whip (https://buy-the-whip.vercel.app)
 - diaspora-scan
 - talking-werner (wernerterminal.com)
 - black-history-month

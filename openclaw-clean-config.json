@@ -1,0 +1,214 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.23",
+    "lastTouchedAt": "2026-03-15T11:36:00.000Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-14T21:32:27.658Z",
+    "lastRunVersion": "2026.2.23",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "token"
+      },
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      },
+      "xai:default": {
+        "provider": "xai",
+        "mode": "api_key"
+      },
+      "anthropic:jackclaudebot": {
+        "provider": "anthropic",
+        "mode": "token"
+      },
+      "anthropic:jacksbot": {
+        "provider": "anthropic",
+        "mode": "token"
+      },
+      "anthropic:jazzy-token": {
+        "provider": "anthropic",
+        "mode": "token"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "xai": {
+        "baseUrl": "https://api.x.ai/v1",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "grok-4",
+            "name": "Grok 4",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-sonnet-4-5",
+        "fallbacks": [
+          "anthropic/claude-sonnet-4-6",
+          "anthropic/claude-opus-4-6"
+        ]
+      },
+      "models": {
+        "anthropic/claude-opus-4-6": {
+          "alias": "opus"
+        },
+        "anthropic/claude-sonnet-4-5": {},
+        "anthropic/claude-sonnet-4-6": {
+          "alias": "sonnet"
+        }
+      },
+      "workspace": "C:\\Users\\Jack\\.openclaw\\workspace",
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "name": "Main Assistant",
+        "workspace": "C:\\Users\\Jack\\Desktop\\AI Website\\htdocs\\Websites\\Project Manager"
+      },
+      {
+        "id": "research-agent",
+        "name": "Research Agent",
+        "workspace": "C:\\Users\\Jack\\.openclaw\\agents\\research-agent"
+      },
+      {
+        "id": "planner",
+        "name": "Planner",
+        "workspace": "C:\\Users\\Jack\\.openclaw\\agents\\planner"
+      }
+    ]
+  },
+  "tools": {
+    "web": {
+      "search": {
+        "enabled": false
+      },
+      "fetch": {
+        "enabled": false
+      }
+    },
+    "agentToAgent": {
+      "enabled": true,
+      "allow": [
+        "research-agent",
+        "planner"
+      ]
+    },
+    "exec": {
+      "security": "full",
+      "ask": "always"
+    }
+  },
+  "bindings": [
+    {
+      "agent": "main",
+      "channel": "discord",
+      "guild": "1471449053220044935"
+    }
+  ],
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": true,
+    "nativeSkills": true,
+    "restart": true,
+    "ownerDisplay": "raw",
+    "allowFrom": {
+      "809133430315024384": ["*"],
+      "1370781720563024089": ["*"]
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "boot-md": {
+          "enabled": true
+        },
+        "bootstrap-extra-files": {
+          "enabled": true
+        },
+        "command-logger": {
+          "enabled": true
+        },
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "channels": {
+    "discord": {
+      "capabilities": [
+        "messageVisibility"
+      ],
+      "enabled": true,
+      "token": "[REDACTED]",
+      "groupPolicy": "open",
+      "streaming": "off",
+      "dmPolicy": "disabled",
+      "allowFrom": [
+        "809133430315024384",
+        "1370781720563024089"
+      ],
+      "dm": {
+        "enabled": true
+      },
+      "guilds": {
+        "1471449053220044935": {
+          "requireMention": false
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "mytoken123"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "plugins": {
+    "entries": {
+      "discord": {
+        "enabled": true
+      }
+    }
+  }
+}
