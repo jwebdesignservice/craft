@@ -1,5 +1,13 @@
 # HEARTBEAT.md
 
+## Gork Burn Reporter
+- File: `C:\Users\Jack\Desktop\AI Website\htdocs\Websites\gork-buyback\burn-results.json`
+- On every heartbeat: read the file, find entries where `reported: false`
+- For each unreported entry: post burn summary to Discord channel `1483163253138788544` using the message tool, then mark `reported: true` and save the file
+- Post format: "🔥 Burn complete! SOL spent: X | Treasury: Y SOL | Buy: <link> | Burn: <link>"
+- If entry has `error` field: post "❌ Buyback failed: <error message>" instead
+- Frequency: every heartbeat (catches burns quickly)
+
 ## Active Monitors
 
 ### MemoryMarket Health
