@@ -17,6 +17,7 @@ Status: `todo` / `in-progress` / `done` / `blocked`
 ## 🟡 In Progress
 
 - [in-progress] System hardening Phase 2 — TASKS.md, git cron, memory cleanup, SOUL fix, PRIORITIES.md — 2026-03-18
+- [in-progress] 👽 Alien Scanner — ET project, channel #alien-scanner, workspace: C:\Users\Jack\Desktop\AI Websites\htdocs\Websites\ET — wils — 2026-03-19
 
 ## 🟢 Recently Done
 

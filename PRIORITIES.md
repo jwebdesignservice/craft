@@ -29,7 +29,13 @@ Keep the stack clean and reliable.
 - Web fetch now enabled — use it
 - Review TASKS.md weekly, archive done items
 
-## 🟢 Priority 5 — Knowledge / Research (background)
+## 🟡 Priority 5 — 👽 Alien Scanner
+ET project — active development.
+- Channel: #alien-scanner
+- Workspace: `C:\Users\Jack\Desktop\AI Websites\htdocs\Websites\ET`
+- Agent: alien-scanner (bound to channel)
+
+## 🟢 Priority 6 — Knowledge / Research (background)
 Skills installed but underused.
 - solana-portfolio-intelligence, token-launch-intelligence, algo-trading-intelligence
 - Activate when JMoon/wils ask for market research or wallet analysis
