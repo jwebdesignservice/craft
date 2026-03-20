@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Design & Development Agreement</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      font-size: 14px;
+      color: #1a1a1a;
+      background: #f4f4f0;
+      padding: 40px 20px;
+    }
+
+    .document {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 70px 80px;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.10);
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      border-bottom: 3px solid #1a1a1a;
+      padding-bottom: 30px;
+      margin-bottom: 40px;
+    }
+
+    .header .logo-name {
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #1a1a1a;
+    }
+
+    .header .tagline {
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .header h1 {
+      margin-top: 24px;
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #1a1a1a;
+    }
+
+    .header .doc-date {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* Client Info Block */
+    .client-info-block {
+      background: #f9f9f7;
+      border: 1px solid #e0e0d8;
+      border-left: 4px solid #1a1a1a;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+    }
+
+    .client-info-block h2 {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 20px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 40px;
+    }
+
+    .info-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-field label {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 6px;
+    }
+
+    .info-field .field-line {
+      border-bottom: 1.5px solid #ccc;
+      min-height: 28px;
+      font-size: 14px;
+      color: #1a1a1a;
+      padding-bottom: 4px;
+    }
+
+    .info-field.full-width {
+      grid-column: 1 / -1;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e8e8e4;
+    }
+
+    .section-number {
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #888;
+      text-transform: uppercase;
+      min-width: 28px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      color: #1a1a1a;
+      text-transform: uppercase;
+    }
+
+    .section-body {
+      font-size: 13.5px;
+      line-height: 1.8;
+      color: #333;
+      padding-left: 40px;
+    }
+
+    .section-body p {
+      margin-bottom: 10px;
+    }
+
+    .section-body ul {
+      margin: 8px 0 12px 20px;
+    }
+
+    .section-body ul li {
+      margin-bottom: 6px;
+    }
+
+    .fill-line {
+      border-bottom: 1px solid #ccc;
+      display: inline-block;
+      min-width: 200px;
+      margin: 0 4px;
+      vertical-align: bottom;
+      height: 18px;
+    }
+
+    .fill-block {
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      min-height: 80px;
+      margin: 12px 0;
+      padding: 10px;
+      background: #fafaf8;
+    }
+
+    /* Fees Table */
+    .fees-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+
+    .fees-table th {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .fees-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .fees-table tr:nth-child(even) td {
+      background: #fafaf8;
+    }
+
+    .fees-table .total-row td {
+      border-top: 2px solid #1a1a1a;
+      font-weight: bold;
+      background: #f4f4f0;
+    }
+
+    .fees-table td.amount {
+      text-align: right;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* Signature Section */
+    .signature-section {
+      margin-top: 50px;
+      border-top: 2px solid #1a1a1a;
+      padding-top: 36px;
+    }
+
+    .signature-section h2 {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .acceptance-text {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #444;
+      text-align: center;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+
+    .sig-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .sig-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .sig-block .party-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 60px;
+    }
+
+    .sig-block .sig-line {
+      border-bottom: 1.5px solid #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .sig-block .sig-label {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    .sig-block .name-line {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 8px;
+      min-height: 24px;
+    }
+
+    .sig-block .name-label {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    .sig-block .date-line {
+      border-bottom: 1px solid #ccc;
+      min-height: 24px;
+      margin-bottom: 8px;
+    }
+
+    .sig-block .date-label {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    /* Footer */
+    .doc-footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #e8e8e4;
+      text-align: center;
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 0.5px;
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .document { box-shadow: none; padding: 40px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="document">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-name">JWEBDESIGN LTD</div>
+    <div class="tagline">Web Design &amp; Development</div>
+    <h1>Web Design &amp; Development Agreement</h1>
+    <div class="doc-date">Agreement Date: <span class="fill-line" style="min-width:140px;"></span></div>
+  </div>
+
+  <!-- CLIENT INFORMATION -->
+  <div class="client-info-block">
+    <h2>Client Information</h2>
+    <div class="info-grid">
+      <div class="info-field">
+        <label>Client Name</label>
+        <div class="field-line"></div>
+      </div>
+      <div class="info-field">
+        <label>Business Name</label>
+        <div class="field-line"></div>
+      </div>
+      <div class="info-field">
+        <label>Email Address</label>
+        <div class="field-line"></div>
+      </div>
+      <div class="info-field">
+        <label>Phone Number</label>
+        <div class="field-line"></div>
+      </div>
+      <div class="info-field full-width">
+        <label>Business Address</label>
+        <div class="field-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. AGREEMENT TITLE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <span class="section-title">Agreement Title</span>
+    </div>
+    <div class="section-body">
+      <p>This Web Design &amp; Development Agreement ("Agreement") is entered into as of the date stated above, between <strong>Jack Wilson, JWEBDESIGN LTD</strong>, 29 Ashley Close, Kingswinford, West Midlands, DY6 9SX ("Designer/Developer") and the client named above ("Client"). This Agreement governs the design, development, and delivery of web-based services as outlined herein.</p>
+      <p>Both parties agree to the terms and conditions set forth in this document. By signing below, both parties acknowledge they have read, understood, and agree to be bound by this Agreement.</p>
+    </div>
+  </div>
+
+  <!-- 2. PROJECT OVERVIEW -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <span class="section-title">Project Overview</span>
+    </div>
+    <div class="section-body">
+      <p><strong>Project Name:</strong> <span class="fill-line" style="min-width:280px;"></span></p>
+      <p><strong>Project Description:</strong></p>
+      <div class="fill-block"></div>
+      <p><strong>Primary Goals &amp; Objectives:</strong></p>
+      <div class="fill-block"></div>
+    </div>
+  </div>
+
+  <!-- 3. SCOPE OF WORK -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <span class="section-title">Scope of Work</span>
+    </div>
+    <div class="section-body">
+      <p>The following services are included within the scope of this Agreement:</p>
+      <div class="fill-block" style="min-height:120px;"></div>
+      <p>Any work falling outside the agreed scope will be discussed and agreed upon in writing before commencement, and may incur additional fees.</p>
+    </div>
+  </div>
+
+  <!-- 4. REFERENCE, STYLE & DESIGN -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <span class="section-title">Reference, Style &amp; Design</span>
+    </div>
+    <div class="section-body">
+      <p><strong>Reference Websites / Inspiration:</strong></p>
+      <div class="fill-block"></div>
+      <p><strong>Brand Colours:</strong> <span class="fill-line" style="min-width:300px;"></span></p>
+      <p><strong>Fonts / Typography Preferences:</strong> <span class="fill-line" style="min-width:260px;"></span></p>
+      <p><strong>Design Style:</strong> <span class="fill-line" style="min-width:300px;"></span></p>
+      <p><strong>Logo / Brand Assets Provided by Client:</strong> &nbsp;☐ Yes &nbsp;&nbsp; ☐ No &nbsp;&nbsp; ☐ To be created</p>
+      <p><strong>Additional Design Notes:</strong></p>
+      <div class="fill-block"></div>
+    </div>
+  </div>
+
+  <!-- 5. DELIVERABLES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <span class="section-title">Deliverables</span>
+    </div>
+    <div class="section-body">
+      <p>Upon completion, the Designer/Developer will provide the following deliverables:</p>
+      <div class="fill-block" style="min-height:100px;"></div>
+      <p>All deliverables are subject to full payment being received prior to final handover.</p>
+    </div>
+  </div>
+
+  <!-- 6. TIMELINES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">06</span>
+      <span class="section-title">Timelines</span>
+    </div>
+    <div class="section-body">
+      <p><strong>Project Start Date:</strong> <span class="fill-line" style="min-width:200px;"></span></p>
+      <p><strong>Estimated Completion Date:</strong> <span class="fill-line" style="min-width:200px;"></span></p>
+      <p><strong>Key Milestones:</strong></p>
+      <div class="fill-block" style="min-height:100px;"></div>
+      <p>Timelines are dependent on the timely provision of content, feedback, and approvals from the Client. Delays caused by the Client may result in revised delivery dates.</p>
+    </div>
+  </div>
+
+  <!-- 7. FEES & EXPENSES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">07</span>
+      <span class="section-title">Fees &amp; Expenses</span>
+    </div>
+    <div class="section-body">
+      <table class="fees-table">
+        <thead>
+          <tr>
+            <th>Item / Service</th>
+            <th class="amount">Amount (£)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td></td><td class="amount"></td></tr>
+          <tr><td></td><td class="amount"></td></tr>
+          <tr><td></td><td class="amount"></td></tr>
+          <tr><td></td><td class="amount"></td></tr>
+          <tr><td>Additional Expenses (hosting, domains, third-party tools)</td><td class="amount"></td></tr>
+          <tr class="total-row"><td><strong>Total Project Fee</strong></td><td class="amount"><strong></strong></td></tr>
+        </tbody>
+      </table>
+      <p>All fees are in GBP (£) and are exclusive of VAT unless otherwise stated. Expenses for third-party services (hosting, domain registration, stock imagery, plugins, etc.) will be passed on to the Client at cost unless included above.</p>
+    </div>
+  </div>
+
+  <!-- 8. PAYMENT TERMS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">08</span>
+      <span class="section-title">Payment Terms</span>
+    </div>
+    <div class="section-body">
+      <p><strong>Deposit (50%):</strong> A non-refundable deposit of 50% of the total project fee is due before work commences. No work will begin until this payment is received.</p>
+      <p><strong>Remaining Balance (50%):</strong> The remaining 50% balance is due upon project completion, prior to the handover of final files or site launch.</p>
+      <p><strong>Payment Method:</strong> <span class="fill-line" style="min-width:260px;"></span></p>
+      <p><strong>Late Payment:</strong> Invoices unpaid after 14 days of the due date may incur a late payment charge of 5% per month on the outstanding balance. Work may be paused until outstanding payments are cleared.</p>
+    </div>
+  </div>
+
+  <!-- 9. REVISION POLICY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">09</span>
+      <span class="section-title">Revision Policy</span>
+    </div>
+    <div class="section-body">
+      <p>This Agreement includes <strong>20 rounds</strong> of revisions per project phase. Revisions are defined as minor adjustments to existing design or content — not new design directions or additions to scope.</p>
+      <p>Additional revisions beyond those included will be charged at <strong>$50 per hour</strong> and agreed in writing prior to commencement.</p>
+      <p>All revision requests must be submitted in writing and consolidated into a single document per round.</p>
+    </div>
+  </div>
+
+  <!-- 10. INTELLECTUAL PROPERTY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">10</span>
+      <span class="section-title">Intellectual Property</span>
+    </div>
+    <div class="section-body">
+      <p>Upon receipt of full and final payment, the Client will be granted full ownership of the completed design and development work, including all source files and assets created specifically for this project.</p>
+      <p>The Designer/Developer retains the right to display the completed work in their portfolio and for promotional purposes, unless the Client requests otherwise in writing.</p>
+      <p>Any third-party assets (stock images, fonts, plugins, frameworks) remain subject to their respective licences. The Designer/Developer is not liable for the Client's misuse of third-party licenced materials.</p>
+    </div>
+  </div>
+
+  <!-- 11. TERMINATION -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">11</span>
+      <span class="section-title">Termination</span>
+    </div>
+    <div class="section-body">
+      <p>Either party may terminate this Agreement with <strong>7 days'</strong> written notice.</p>
+      <p>In the event of termination by the Client, the deposit is non-refundable. Any work completed up to the point of termination will be invoiced at the agreed hourly/pro-rata rate and must be settled within 14 days.</p>
+      <p>In the event of termination by the Designer/Developer, any unused portion of fees already paid will be refunded, less the value of work completed to that point.</p>
+    </div>
+  </div>
+
+  <!-- 12. CONFIDENTIALITY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">12</span>
+      <span class="section-title">Confidentiality</span>
+    </div>
+    <div class="section-body">
+      <p>Both parties agree to keep confidential any proprietary or sensitive information shared during the course of this Agreement. This includes but is not limited to business strategies, customer data, pricing, and technical systems.</p>
+      <p>This confidentiality obligation survives the termination of this Agreement and shall remain in effect indefinitely.</p>
+    </div>
+  </div>
+
+  <!-- ACCEPTANCE & SIGNATURES -->
+  <div class="signature-section">
+    <h2>Acceptance &amp; Signatures</h2>
+
+    <p class="acceptance-text">
+      By signing below, both parties confirm they have read, understood, and agree to all terms and conditions set forth in this Web Design &amp; Development Agreement. This Agreement becomes legally binding upon signature of both parties.
+    </p>
+
+    <div class="sig-grid">
+
+      <!-- CLIENT -->
+      <div class="sig-block">
+        <div class="party-label">Client</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Signature</div>
+
+        <div class="name-line"></div>
+        <div class="name-label">Full Name (Print)</div>
+
+        <div class="name-line"></div>
+        <div class="name-label">Job Title / Position</div>
+
+        <div class="date-line"></div>
+        <div class="date-label">Date</div>
+      </div>
+
+      <!-- DESIGNER/DEVELOPER -->
+      <div class="sig-block">
+        <div class="party-label">Designer / Developer</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Signature</div>
+
+        <div class="name-line" style="border-bottom:none; font-size:14px; color:#1a1a1a; padding-bottom:4px;">Jack Wilson</div>
+        <div class="name-label">Full Name</div>
+
+        <div class="name-line" style="border-bottom:none; font-size:14px; color:#1a1a1a; padding-bottom:4px;">JWEBDESIGN LTD · 29 Ashley Close, Kingswinford, West Midlands, DY6 9SX</div>
+        <div class="name-label">Business Name &amp; Address</div>
+
+        <div class="date-line"></div>
+        <div class="date-label">Date</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <p>Jack Wilson · JWEBDESIGN LTD · 29 Ashley Close, Kingswinford, West Midlands, DY6 9SX · jwebdesign.co.uk</p>
+    <p style="margin-top:6px;">This document is confidential and intended solely for the named parties.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

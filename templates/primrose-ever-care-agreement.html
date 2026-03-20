@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Design Agreement — Primrose Ever Care</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      font-size: 14px;
+      color: #1a1a1a;
+      background: #f4f4f0;
+      padding: 40px 20px;
+    }
+
+    /* Background shapes */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -120px;
+      right: -120px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 60px solid rgba(0,0,0,0.04);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -80px;
+      left: -80px;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      border: 50px solid rgba(0,0,0,0.03);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-shape-1 {
+      position: fixed;
+      top: 40%;
+      left: -40px;
+      width: 120px;
+      height: 400px;
+      background: rgba(0,0,0,0.025);
+      border-radius: 0 100px 100px 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-shape-2 {
+      position: fixed;
+      top: 20%;
+      right: -30px;
+      width: 80px;
+      height: 250px;
+      background: rgba(0,0,0,0.02);
+      border-radius: 100px 0 0 100px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-shape-3 {
+      position: fixed;
+      bottom: 25%;
+      right: 60px;
+      width: 60px;
+      height: 60px;
+      background: transparent;
+      border: 12px solid rgba(0,0,0,0.04);
+      transform: rotate(45deg);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-shape-4 {
+      position: fixed;
+      top: 15%;
+      left: 60px;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: 8px solid rgba(0,0,0,0.035);
+      transform: rotate(20deg);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .document {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 70px 80px;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.10);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Corner accent */
+    .document::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: #1a1a1a;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      border-bottom: 3px solid #1a1a1a;
+      padding-bottom: 30px;
+      margin-bottom: 40px;
+    }
+
+    .header .logo-name {
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #1a1a1a;
+    }
+
+    .header .tagline {
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .header h1 {
+      margin-top: 24px;
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #1a1a1a;
+    }
+
+    .header .doc-date {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* Client Info Block */
+    .client-info-block {
+      background: #f9f9f7;
+      border: 1px solid #e0e0d8;
+      border-left: 4px solid #1a1a1a;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+    }
+
+    .client-info-block h2 {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 20px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 40px;
+    }
+
+    .info-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-field label {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 6px;
+    }
+
+    .info-field .field-value {
+      font-size: 14px;
+      color: #1a1a1a;
+      padding-bottom: 6px;
+      border-bottom: 1.5px solid #1a1a1a;
+      font-weight: 500;
+    }
+
+    .info-field.full-width {
+      grid-column: 1 / -1;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e8e8e4;
+    }
+
+    .section-number {
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #888;
+      text-transform: uppercase;
+      min-width: 28px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      color: #1a1a1a;
+      text-transform: uppercase;
+    }
+
+    .section-body {
+      font-size: 13.5px;
+      line-height: 1.8;
+      color: #333;
+      padding-left: 40px;
+    }
+
+    .section-body p {
+      margin-bottom: 10px;
+    }
+
+    .section-body ul {
+      margin: 8px 0 12px 20px;
+    }
+
+    .section-body ul li {
+      margin-bottom: 6px;
+    }
+
+    .highlight {
+      background: #f4f4f0;
+      border-left: 3px solid #1a1a1a;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+
+    /* Fees Table */
+    .fees-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+
+    .fees-table th {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .fees-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .fees-table tr:nth-child(even) td {
+      background: #fafaf8;
+    }
+
+    .fees-table .total-row td {
+      border-top: 2px solid #1a1a1a;
+      font-weight: bold;
+      background: #f4f4f0;
+    }
+
+    .fees-table td.amount {
+      text-align: right;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* Payment split */
+    .payment-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .payment-card {
+      border: 1px solid #e0e0d8;
+      padding: 16px;
+      text-align: center;
+      background: #fafaf8;
+    }
+
+    .payment-card .amount {
+      font-size: 24px;
+      font-weight: bold;
+      color: #1a1a1a;
+      font-family: 'Courier New', monospace;
+    }
+
+    .payment-card .label {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .payment-card .when {
+      font-size: 12px;
+      color: #555;
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* Signature Section */
+    .signature-section {
+      margin-top: 50px;
+      border-top: 2px solid #1a1a1a;
+      padding-top: 36px;
+    }
+
+    .signature-section h2 {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .acceptance-text {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #444;
+      text-align: center;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+
+    .sig-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .sig-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sig-block .party-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 60px;
+    }
+
+    .sig-block .sig-line {
+      border-bottom: 1.5px solid #1a1a1a;
+      margin-bottom: 8px;
+      min-height: 10px;
+    }
+
+    .sig-block .sig-label {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    .sig-block .name-value {
+      font-size: 14px;
+      color: #1a1a1a;
+      font-weight: 500;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #1a1a1a;
+      margin-bottom: 6px;
+    }
+
+    .sig-block .name-line {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 8px;
+      min-height: 24px;
+    }
+
+    .sig-block .name-label {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    .sig-block .date-line {
+      border-bottom: 1px solid #ccc;
+      min-height: 24px;
+      margin-bottom: 8px;
+    }
+
+    .sig-block .date-label {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    /* Footer */
+    .doc-footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #e8e8e4;
+      text-align: center;
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 0.5px;
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      body::before, body::after { display: none; }
+      .bg-shape-1, .bg-shape-2, .bg-shape-3, .bg-shape-4 { display: none; }
+      .document { box-shadow: none; padding: 40px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Background decorative shapes -->
+<div class="bg-shape-1"></div>
+<div class="bg-shape-2"></div>
+<div class="bg-shape-3"></div>
+<div class="bg-shape-4"></div>
+
+<div class="document">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-name">JWEBDESIGN LTD</div>
+    <div class="tagline">Web Design &amp; Development</div>
+    <h1>Web Design &amp; Development Agreement</h1>
+    <div class="doc-date">Agreement Date: <span style="font-weight:bold; color:#1a1a1a;">20th March 2026</span></div>
+  </div>
+
+  <!-- CLIENT INFORMATION -->
+  <div class="client-info-block">
+    <h2>Client Information</h2>
+    <div class="info-grid">
+      <div class="info-field">
+        <label>Client Name</label>
+        <div class="field-value">Aminah Carew</div>
+      </div>
+      <div class="info-field">
+        <label>Business Name</label>
+        <div class="field-value">Primrose Ever Care LTD</div>
+      </div>
+      <div class="info-field">
+        <label>Email Address</label>
+        <div class="field-value">info@primroseevercare.co.uk</div>
+      </div>
+      <div class="info-field">
+        <label>Phone Number</label>
+        <div class="field-value">N/A</div>
+      </div>
+      <div class="info-field full-width">
+        <label>Business Address</label>
+        <div class="field-value">4 Peak House, Manor Road, Chatham, Kent, ME4 6DW</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. AGREEMENT TITLE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <span class="section-title">Agreement Title</span>
+    </div>
+    <div class="section-body">
+      <p>This Web Design &amp; Development Agreement ("Agreement") is entered into as of the date stated above, between <strong>Jack Wilson, JWEBDESIGN LTD</strong>, 29 Ashley Close, Kingswinford, West Midlands, DY6 9SX ("Designer/Developer") and <strong>Aminah Carew, Primrose Ever Care LTD</strong> ("Client"). This Agreement governs the design, development, and delivery of web-based services as outlined herein.</p>
+      <p>Both parties agree to the terms and conditions set forth in this document. By signing below, both parties acknowledge they have read, understood, and agree to be bound by this Agreement.</p>
+    </div>
+  </div>
+
+  <!-- 2. PROJECT OVERVIEW -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <span class="section-title">Project Overview</span>
+    </div>
+    <div class="section-body">
+      <p><strong>Project Name:</strong> Primrose Ever Care — Website Design &amp; Development</p>
+      <p><strong>Project Description:</strong></p>
+      <div class="highlight">Design and development of a full professional website for Primrose Ever Care LTD, a domiciliary home care business operating in the Medway area (Rochester, Chatham, Gillingham, Strood, Rainham). The site will reflect the business's compassionate, professional brand and serve as the primary digital presence for attracting care clients and building trust.</div>
+      <p><strong>Primary Goals &amp; Objectives:</strong></p>
+      <div class="highlight">Generate enquiries from families seeking home care in Medway · Build brand credibility and trust · Clearly communicate services offered · Achieve strong local SEO rankings for Medway care-related searches · Comply with all regulatory requirements for a CQC-registered care business</div>
+    </div>
+  </div>
+
+  <!-- 3. SCOPE OF WORK -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <span class="section-title">Scope of Work</span>
+    </div>
+    <div class="section-body">
+      <p>The following services are included within the scope of this Agreement:</p>
+      <ul>
+        <li><strong>Homepage</strong> — 9-section layout (hero, trust bar, services overview, why choose us, areas covered, testimonials, CTA, contact, footer)</li>
+        <li><strong>Services Page</strong> — individual detail sections per service: Personal Care, Dementia Care, Companionship, Medication Support, Live-in Care</li>
+        <li><strong>About Page</strong> — company story, values, aims &amp; objectives, team section, CQC registration status</li>
+        <li><strong>Areas We Cover Page</strong> — Google Maps embed, area-specific content for Rochester, Chatham, Gillingham, Strood, Rainham</li>
+        <li><strong>Contact / Enquiry Page</strong> — 2-step enquiry form (About You &amp; Care Requirements), Google Maps embed</li>
+        <li><strong>Legal Pages</strong> — Privacy Policy, Cookies Policy, Complaints Procedure, Safeguarding Policy</li>
+        <li><strong>Form Email Integration</strong> — contact form wired to client inbox via email service</li>
+        <li><strong>Cookie Consent Banner</strong> — GDPR compliant (required by UK law)</li>
+        <li><strong>Click-to-Call Button</strong> — mobile-prominent tap-to-call functionality</li>
+        <li><strong>SEO Optimisation</strong> — meta tags, titles, descriptions targeting Medway care search terms on all pages</li>
+        <li><strong>Fully Responsive</strong> — optimised for mobile, tablet, and desktop</li>
+        <li><strong>Deployment</strong> — hosted and live on Vercel with custom domain connection</li>
+      </ul>
+      <p>Any work falling outside the agreed scope will be discussed and agreed upon in writing before commencement, and may incur additional fees.</p>
+    </div>
+  </div>
+
+  <!-- 4. REFERENCE, STYLE & DESIGN -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <span class="section-title">Reference, Style &amp; Design</span>
+    </div>
+    <div class="section-body">
+      <p><strong>Live Preview:</strong> <a href="https://primrose-ever-care.vercel.app" style="color:#1a1a1a;">https://primrose-ever-care.vercel.app</a></p>
+      <p><strong>Brand Colours:</strong> Pink / Soft Blue — as per provided logo</p>
+      <p><strong>Fonts / Typography:</strong> Cormorant Garamond (headings) — elegant, professional, care-appropriate</p>
+      <p><strong>Design Style:</strong> Clean, professional, compassionate — unique design with smooth animations and hover effects. Non-generic aesthetic tailored to the care sector.</p>
+      <p><strong>Logo / Brand Assets:</strong> ✅ Provided by Client (logo supplied)</p>
+      <p><strong>Design Direction:</strong> Reflects the warmth, trust, and professionalism required of a regulated care business. Easy to read, clearly structured, and conversion-focused.</p>
+    </div>
+  </div>
+
+  <!-- 5. DELIVERABLES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <span class="section-title">Deliverables</span>
+    </div>
+    <div class="section-body">
+      <p>Upon completion, the Designer/Developer will provide the following:</p>
+      <ul>
+        <li>Fully functional, live website deployed to production</li>
+        <li>All pages as listed in Scope of Work (Section 03)</li>
+        <li>Custom domain connected and configured</li>
+        <li>Contact form wired to client email inbox</li>
+        <li>GDPR-compliant cookie consent banner</li>
+        <li>SEO-optimised pages with meta data</li>
+        <li>Access to GitHub repository containing all source code</li>
+        <li>Vercel project access transferred to client on request</li>
+      </ul>
+      <p>All deliverables are subject to full payment being received prior to final handover.</p>
+    </div>
+  </div>
+
+  <!-- 6. TIMELINES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">06</span>
+      <span class="section-title">Timelines</span>
+    </div>
+    <div class="section-body">
+      <p><strong>Project Start Date:</strong> 20th March 2026</p>
+      <p><strong>Estimated Completion:</strong> 3–7 days from receipt of all content and images from Client</p>
+      <p><strong>Key Milestones:</strong></p>
+      <ul>
+        <li>Homepage — ✅ Complete &amp; live</li>
+        <li>Contact / Enquiry page — ✅ Complete &amp; live</li>
+        <li>Remaining pages, legal pages, form integration, SEO — In progress</li>
+        <li>Final sign-off &amp; handover — Upon receipt of final payment</li>
+      </ul>
+      <p>Timelines are dependent on the timely provision of content, photos, and approvals from the Client. Delays caused by the Client may result in revised delivery dates.</p>
+    </div>
+  </div>
+
+  <!-- 7. FEES & EXPENSES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">07</span>
+      <span class="section-title">Fees &amp; Expenses</span>
+    </div>
+    <div class="section-body">
+      <table class="fees-table">
+        <thead>
+          <tr>
+            <th>Item / Service</th>
+            <th class="amount">Amount (£)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Full website design &amp; development (all pages)</td><td class="amount">£1,500.00</td></tr>
+          <tr><td>Hosting setup &amp; Vercel deployment</td><td class="amount">Included</td></tr>
+          <tr><td>Domain connection</td><td class="amount">Included</td></tr>
+          <tr><td>Form email integration</td><td class="amount">Included</td></tr>
+          <tr><td>Cookie consent banner (GDPR)</td><td class="amount">Included</td></tr>
+          <tr><td>SEO optimisation (all pages)</td><td class="amount">Included</td></tr>
+          <tr><td>Additional expenses (third-party tools, if required)</td><td class="amount">At cost</td></tr>
+          <tr class="total-row"><td><strong>Total Project Fee</strong></td><td class="amount"><strong>£1,500.00</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:12px; font-size:12px; color:#666; font-style:italic;">Optional ongoing: £20/month maintenance plan — includes updates, security patches, performance monitoring, SEO, and priority support.</p>
+    </div>
+  </div>
+
+  <!-- 8. PAYMENT TERMS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">08</span>
+      <span class="section-title">Payment Terms</span>
+    </div>
+    <div class="section-body">
+      <p>Payment is split equally into two instalments:</p>
+      <div class="payment-split">
+        <div class="payment-card">
+          <div class="amount">£750</div>
+          <div class="label">50% Deposit</div>
+          <div class="when">Due before work commences · Non-refundable</div>
+        </div>
+        <div class="payment-card">
+          <div class="amount">£750</div>
+          <div class="label">50% Balance</div>
+          <div class="when">Due on completion · Prior to final handover</div>
+        </div>
+      </div>
+      <p><strong>Payment Method:</strong> Stripe Invoice</p>
+      <p><strong>Late Payment:</strong> Invoices unpaid after 14 days of the due date may incur a late payment charge of 5% per month on the outstanding balance. Work may be paused until outstanding payments are cleared.</p>
+    </div>
+  </div>
+
+  <!-- 9. REVISION POLICY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">09</span>
+      <span class="section-title">Revision Policy</span>
+    </div>
+    <div class="section-body">
+      <p>This Agreement includes <strong>20 rounds</strong> of revisions per project phase. Revisions are defined as minor adjustments to existing design or content — not new design directions or additions to scope.</p>
+      <p>Additional revisions beyond those included will be charged at <strong>$50 per hour</strong> and agreed in writing prior to commencement.</p>
+      <p>All revision requests must be submitted in writing and consolidated into a single document per round.</p>
+    </div>
+  </div>
+
+  <!-- 10. INTELLECTUAL PROPERTY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">10</span>
+      <span class="section-title">Intellectual Property</span>
+    </div>
+    <div class="section-body">
+      <p>Upon receipt of full and final payment, the Client will be granted full ownership of the completed design and development work, including all source files and assets created specifically for this project.</p>
+      <p>The Designer/Developer retains the right to display the completed work in their portfolio and for promotional purposes, unless the Client requests otherwise in writing.</p>
+      <p>Any third-party assets (stock images, fonts, plugins, frameworks) remain subject to their respective licences. The Designer/Developer is not liable for the Client's misuse of third-party licenced materials.</p>
+    </div>
+  </div>
+
+  <!-- 11. TERMINATION -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">11</span>
+      <span class="section-title">Termination</span>
+    </div>
+    <div class="section-body">
+      <p>Either party may terminate this Agreement with <strong>7 days'</strong> written notice.</p>
+      <p>In the event of termination by the Client, the deposit is non-refundable. Any work completed up to the point of termination will be invoiced at the agreed hourly/pro-rata rate and must be settled within 14 days.</p>
+      <p>In the event of termination by the Designer/Developer, any unused portion of fees already paid will be refunded, less the value of work completed to that point.</p>
+    </div>
+  </div>
+
+  <!-- 12. CONFIDENTIALITY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">12</span>
+      <span class="section-title">Confidentiality</span>
+    </div>
+    <div class="section-body">
+      <p>Both parties agree to keep confidential any proprietary or sensitive information shared during the course of this Agreement. This includes but is not limited to business strategies, customer data, pricing, and technical systems.</p>
+      <p>This confidentiality obligation survives the termination of this Agreement and shall remain in effect indefinitely.</p>
+    </div>
+  </div>
+
+  <!-- ACCEPTANCE & SIGNATURES -->
+  <div class="signature-section">
+    <h2>Acceptance &amp; Signatures</h2>
+
+    <p class="acceptance-text">
+      By signing below, both parties confirm they have read, understood, and agree to all terms and conditions set forth in this Web Design &amp; Development Agreement. This Agreement becomes legally binding upon signature of both parties.
+    </p>
+
+    <div class="sig-grid">
+
+      <!-- CLIENT -->
+      <div class="sig-block">
+        <div class="party-label">Client</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Signature</div>
+
+        <div class="name-value">Aminah Carew</div>
+        <div class="name-label">Full Name</div>
+
+        <div class="name-value">Primrose Ever Care LTD</div>
+        <div class="name-label">Business Name</div>
+
+        <div class="date-line"></div>
+        <div class="date-label">Date</div>
+      </div>
+
+      <!-- DESIGNER/DEVELOPER -->
+      <div class="sig-block">
+        <div class="party-label">Designer / Developer</div>
+
+        <div class="sig-line"></div>
+        <div class="sig-label">Signature</div>
+
+        <div class="name-value">Jack Wilson</div>
+        <div class="name-label">Full Name</div>
+
+        <div class="name-value">JWEBDESIGN LTD · 29 Ashley Close, Kingswinford, West Midlands, DY6 9SX</div>
+        <div class="name-label">Business Name &amp; Address</div>
+
+        <div class="date-line"></div>
+        <div class="date-label">Date</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <p>Jack Wilson · JWEBDESIGN LTD · 29 Ashley Close, Kingswinford, West Midlands, DY6 9SX · jwebdesign.co.uk</p>
+    <p style="margin-top:6px;">This document is confidential and intended solely for the named parties.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
