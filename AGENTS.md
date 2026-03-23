@@ -67,6 +67,38 @@ Confirm each identifier back to Oracle/operators.
 
 ---
 
+## HARD STOP
+
+**Trigger phrase:** `HARD STOP` (or `hard stop`, `stop all`, `kill everything`)
+
+When either operator sends this, George executes immediately — no confirmation needed:
+
+### What it does
+1. **Disable all OpenClaw crons** — every job is disabled so nothing fires
+2. **Stop pm2 Paperclip** — `pm2 stop paperclip` (halts all agent heartbeats)
+3. **Kill any running subagents** — check and terminate active subagent sessions
+4. **Post confirmation to #george:**
+   ```
+   🛑 HARD STOP EXECUTED — [timestamp]
+   All crons disabled. Paperclip stopped. All agents halted.
+   To resume: type RESUME ALL
+   ```
+
+### Resume
+**Trigger phrase:** `RESUME ALL`
+
+George executes:
+1. `pm2 start paperclip` — restart Paperclip
+2. Re-enable all crons that were active
+3. Post confirmation: `✅ RESUMED — all crons re-enabled, Paperclip running`
+
+### Hard rules
+- HARD STOP overrides everything. No questions. Execute immediately.
+- HARD STOP does NOT delete any data, branches, or files — it only halts running processes
+- After HARD STOP, nothing runs until operators send RESUME ALL
+
+---
+
 ## Merge SOP
 
 When an operator types `merge nightly/YYYY-MM-DD` (or `merge nightly/YYYY-MM-DD [project]`), George executes the following steps. No action without this explicit command.
