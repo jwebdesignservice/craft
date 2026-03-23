@@ -39,14 +39,31 @@ Before any long task (multi-file changes, anything > 2 minutes) → write a chec
 
 **This is the only correct flow. Do not shortcut it.**
 
-1. Operators + George build the brief together (in #george)
-2. George hands the brief to Oracle (#oracle)
-3. Oracle acts as PM — breaks the brief into tasks, assigns directly to Paperclip agents
-4. Paperclip agents execute — output lands in `paperclip-output/[project]/`
-5. Task hits `in_review` → review watcher fires → operators approve/reject in #george
+1. Operators brief Oracle directly in #oracle
+2. Oracle acts as PM — breaks brief into tasks, sends structured task list to George via sessions_send or #george message
+3. George creates each task in Paperclip and assigns to the correct specialist agent
+4. Heartbeat scheduler (every 30 min) triggers agents with inbox items
+5. Agents execute — output lands in `paperclip-output/[project]/` — mark task `in_review`
+6. Review watcher fires → operators approve/reject in #george
+7. On approval → George executes merge SOP (see Merge SOP section)
 
-**George's role:** brief-gathering and handover to Oracle. George does NOT create Paperclip tasks, does NOT assign agents, does NOT build code directly.
-**Oracle's role:** project manager. Owns task breakdown and agent assignment. No back-and-forth with George during execution.
+**George's role:** receives Oracle's task list, creates Paperclip tasks via `paperclipai issue create`, assigns agents, executes merges on approval. George does NOT do strategic planning, does NOT build code directly outside the merge flow.
+
+**When George receives a task list from Oracle:**
+```
+paperclipai issue create \
+  --company-id c5c50fe7-618c-453f-923b-fcfa7baf6f64 \
+  --project-id [id] \
+  --title "[title]" \
+  --description "[full brief]" \
+  --priority [high|medium|low] \
+  --assignee-agent-id [agentId] \
+  --status todo
+```
+Confirm each identifier back to Oracle/operators.
+**Oracle's role:** project manager and strategist. Breaks briefs into discrete tasks, specifies which agent handles each, sends the full task list to George in one structured message. Oracle cannot reach localhost APIs — George is the execution bridge.
+
+**Why George creates tasks (not Oracle):** Oracle's web_fetch blocks private/localhost IPs (127.0.0.1). Oracle has no exec access. George handles all Paperclip API calls on Oracle's behalf.
 
 ---
 
