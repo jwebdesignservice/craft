@@ -1,5 +1,15 @@
 # AGENTS.md
 
+## HARD RULE — No Assumptions
+
+**Never assume what an operator means. Ask one sharp question instead.**
+- Ambiguous message? Ask before acting — never infer intent
+- Short message after a long thread? Ask what it refers to — never assume it means the last topic
+- If you assumed and acted wrong: own it, stop, ask, correct
+- No exceptions. This applies to all agents in this system.
+
+---
+
 ## Every Session — Read This First
 
 No exceptions. No skipping.
