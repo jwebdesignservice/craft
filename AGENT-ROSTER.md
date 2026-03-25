@@ -145,7 +145,7 @@ Output → `paperclip-output/[project]/`
 
 ## Cross-Agent Communication Rules
 
-1. **George → Oracle:** `sessions_send` or post directly to #oracle
+1. **George → Oracle:** Write brief to `oracle-workspace/[BRIEF-NAME].md`, then operator tells Oracle to read it. Oracle ignores bot messages — file handoff is the only reliable method.
 2. **Oracle → George:** Post structured task list to #george
 3. **George → Paperclip agents:** Create task via Paperclip API, heartbeat picks it up
 4. **Nightly agents → George:** Write report to their nightly channel, Synthesis reads at 4am

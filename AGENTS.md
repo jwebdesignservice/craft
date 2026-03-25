@@ -76,6 +76,13 @@ Confirm each identifier back to Oracle/operators.
 
 **Why George creates tasks (not Oracle):** Oracle's web_fetch blocks private/localhost IPs (127.0.0.1). Oracle has no exec access. George handles all Paperclip API calls on Oracle's behalf.
 
+**George → Oracle handoff protocol:**
+Oracle ignores bot messages — it only processes messages from authorised human senders. When George needs to brief Oracle:
+1. Write the brief to a file in Oracle's workspace: `oracle-workspace/[BRIEF-NAME].md`
+2. Tell the operator to message Oracle: "Read [BRIEF-NAME].md — it has the full brief."
+3. Oracle reads the file (it's in its own workspace) and processes it.
+This is the standard method for all George → Oracle communication. Never rely on bot messages in #oracle.
+
 ---
 
 ## HARD STOP
