@@ -5,39 +5,21 @@
 **Layer 1 — OpenClaw (the engine)**
 
 Two always-on AI sessions in Discord:
-- 🦞 **George** in #george (`1485576662362882162`) — full access: code, shell, deploys, browser, crons, everything. This is the executor.
-- 🔮 **Oracle** in #oracle (`1485587083102781586`) — strategy only: web search, read/write files, send messages. No shell. No API calls.
+- 🦞 **George** in #george — full access: code, shell, deploys, browser, crons, everything. The executor.
+- 🔮 **Oracle** in #oracle — strategy only: web search, read/write files, send messages. No shell. No API calls.
 
 Flow: Jack briefs Oracle → Oracle plans → Oracle messages George → George executes.
 
 **Layer 2 — Paperclip (the task queue)**
 
-11 specialist agents — each is a task TYPE, not a project:
-- **Dev** (`f93dc400`) — code, builds, debugging
-- **Copywriter** (`861e3ef0`) — homepage copy, email templates, product descriptions
-- **Scriptwriter** (`34403575`) — video scripts, 60-second promos
-- **Social** (`42dbde88`) — branded image posts (Instagram, X, LinkedIn)
-- **SEO** (`af5632b0`) — keyword research, on-page optimisation
-- **Marketing** (`4b295d83`) — campaign strategy, GTM plans
-- **Ads** (`39dac44c`) — Google + Meta ad copy
-- **Outreach** (`750e1aeb`) — cold email sequences, LinkedIn scripts
-- **Analytics** (`d087e120`) — KPI tracking, launch metrics
-- **Video** (`1ae5bdf9`) — video production planning
-- **Visual Director** (`35d45b16`) — design briefs, visual QA gate
-
-Company ID: `c5c50fe7-618c-453f-923b-fcfa7baf6f64`
-API: `http://127.0.0.1:3100/api`
+11 specialist agents — each is a task TYPE, not a project. Triggered by heartbeat scheduler every 30 min.
+Company ID: `c5c50fe7-618c-453f-923b-fcfa7baf6f64` | API: `http://127.0.0.1:3100/api`
 
 **Layer 3 — Nightly crons (autonomous overnight)**
 
-Separate from Paperclip — run on their own schedule:
-- 2:00am — Primrose nightly agent (cron: `379c10e8`)
-- 2:30am — Desert Falcons nightly agent (cron: `0a760b2a`)
-- 4:00am — Synthesis agent → reads all 4 reports → posts morning handover to #general (cron: `4bfaf407`)
-- 11:00pm — Workspace git commit (cron: `33a5f89a`)
-- Every 2min — Review flow watcher, posts in_review alerts to #george (cron: `d9e29911`)
+Separate from Paperclip — run on their own schedule. Nightly agents push `nightly/YYYY-MM-DD` branches. **Never auto-merge.** Review in the morning.
 
-Nightly agents push `nightly/YYYY-MM-DD` branches. **Never auto-merge.** Review in the morning.
+→ **Full team roster, every agent's channel ID, model, capabilities, cron IDs, and comms rules: see `AGENT-ROSTER.md`**
 
 ---
 

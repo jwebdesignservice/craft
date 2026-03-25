@@ -27,7 +27,7 @@ Read this when context is thin or a new session starts. This is the system handb
 - `CAPABILITIES.md` — this file
 - `BUILD-SHEET.md` — project registry (code layer)
 
-**Must-reads on startup:** CURRENT.md → memory/today.md → AGENTS.md
+**Must-reads on startup:** CURRENT.md → memory/today.md → AGENTS.md → AGENT-ROSTER.md
 
 ---
 
@@ -39,44 +39,29 @@ Read this when context is thin or a new session starts. This is the system handb
 - Model: Claude Sonnet (anthropic/claude-sonnet-4-6)
 - CANNOT: exec shell, call localhost APIs directly, deploy, modify config, run cron
 
+→ **Full agent details, channel IDs, and capabilities: see `AGENT-ROSTER.md`**
+
 ---
 
 ## 🛠️ Paperclip Agents (task-specialists — NOT per-project)
 
 All 11 agents run Claude Sonnet via `claude_local` adapter with `dangerouslySkipPermissions: true`.
 Triggered by heartbeat scheduler (every 30 min) when inbox has work.
-
-| Agent | ID prefix | Task type | Default cwd |
-|---|---|---|---|
-| Dev | f93dc400 | Code, builds, debugging | primrose-ever-care |
-| Copywriter | 861e3ef0 | Copy, emails, descriptions | primrose-ever-care |
-| Scriptwriter | 34403575 | Video/ad scripts | primrose-ever-care |
-| Social | 42dbde88 | Branded social posts | Project Manager |
-| SEO | af5632b0 | Keywords, on-page SEO | primrose-ever-care |
-| Marketing | 4b295d83 | Campaign strategy, GTM | Project Manager |
-| Ads | 39dac44c | Google/Meta ad copy | Project Manager |
-| Outreach | 750e1aeb | Cold email, LinkedIn | Project Manager |
-| Analytics | d087e120 | KPI plans, metrics | Project Manager |
-| Video | 1ae5bdf9 | Video production briefs | Project Manager |
-| Visual Director | 35d45b16 | Design briefs, QA | Project Manager |
-
 Output goes to: `paperclip-output/[project]/`
 Paperclip UI: http://127.0.0.1:3100
 Company ID: c5c50fe7-618c-453f-923b-fcfa7baf6f64
+
+→ **Full agent roster, IDs, API keys, and task types: see `AGENT-ROSTER.md`**
 
 ---
 
 ## 🌙 Nightly Agents
 
-| Agent | Time (GMT) | Channel | Cron ID | Focus |
-|---|---|---|---|---|
-| Primrose Ever Care | 2:00am | #primrose-nightly (1485582161137635500) | 379c10e8 | Dev tasks, iterative build loop |
-| Desert Falcons | 2:30am | #desert-falcons-nightly (1485582181303849012) | 0a760b2a | Audit + fixes |
-| Synthesis | 4:00am | #general (1483164982488203404) | 4bfaf407 | Reads reports, posts handover, updates crons |
-
 **Policy:** All nightly work on `nightly/YYYY-MM-DD` branch. Nothing merges to main without explicit operator approval. See Merge SOP in AGENTS.md.
 
 **Iteration loop (autoresearch):** make changes → build → pass=commit, fail=revert+different approach → max 5 iterations, 45min budget.
+
+→ **Full nightly agent schedule, cron IDs, and channel IDs: see `AGENT-ROSTER.md`**
 
 ---
 

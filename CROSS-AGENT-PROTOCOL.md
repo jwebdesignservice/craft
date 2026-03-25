@@ -13,12 +13,12 @@ When agent A sends a message to agent B's channel, agent B doesn't automatically
 
 ## Authorization
 
-**Verified User IDs:**
+**Verified User IDs:** See `AGENT-ROSTER.md` → Operators section for canonical IDs.
 - JMoon: `1370781720563024089`
 - wils: `809133430315024384`
 
 **Rule:** Cross-agent communication is ONLY enabled when:
-1. Original request came from a verified user ID
+1. Original request came from a verified user ID (see AGENT-ROSTER.md)
 2. Message contains explicit handoff marker
 3. Target agent acknowledges receipt
 
@@ -117,7 +117,7 @@ Original request by: ${userId}
 ## Security Rules
 
 **✅ ALLOWED:**
-- User IDs 1370781720563024089 or 809133430315024384 initiate handover
+- Operator user IDs (see AGENT-ROSTER.md) initiate handover
 - Message contains [HANDOVER] marker
 - Target agent verifies before responding
 

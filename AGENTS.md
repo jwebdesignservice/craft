@@ -17,8 +17,9 @@ No exceptions. No skipping.
 1. **`CURRENT.md`** — live project state
 2. **`memory/YYYY-MM-DD.md`** (today + yesterday) — recent context
 3. **`OFFICE.md`** — your role, SOPs, tool usage
+4. **`AGENT-ROSTER.md`** — full team: every agent, their channel IDs, capabilities, and how to reach them
 
-If context feels thin, read those three before responding to anything.
+If context feels thin, read those four before responding to anything.
 
 ---
 
