@@ -1,5 +1,5 @@
 # CURRENT.md — Live Project State
-Last updated: 2026-03-26 17:44 GMT
+Last updated: 2026-03-28 21:30 GMT (synthesis agent)
 
 ---
 
@@ -33,14 +33,16 @@ Last updated: 2026-03-26 17:44 GMT
 **Status:** Live — https://www.primroseevercare.co.uk
 **Repo:** github.com/jwebdesignservice/Primrose-evercare
 **Local:** C:\Users\Jack\Desktop\AI Website\htdocs\Websites\primrose-ever-care
-**Branch:** main (nightly/2026-03-26 merged this morning)
+**Branch:** main (nightly/2026-03-26 merged — 2026-03-27 and 2026-03-28 PENDING OPERATOR REVIEW)
 
 ### What's live:
 - SEO metadata pass (OG tags, canonicals, title templates) — all 8+ pages
 - Accessibility fixes: ContactForm label wrapping, step progress aria, CookieBanner aria-hidden
 - Contact form wired to Resend API
 
-### Open items:
+### ⚠️ Action required — operators:
+- **AGENT-BRIEF.md is stale** — still shows SEO task (completed 2026-03-25). Agent has self-directed 2 nights on accessibility work. Operators must update brief to the next explicit task.
+- **Two unmerged branches:** `nightly/2026-03-27` and `nightly/2026-03-28` — both are accessibility passes (decorative SVG aria-hidden). Recommend reviewing `nightly/2026-03-28` as it appears to be a superset. Issue `merge nightly/2026-03-28` when ready (2026-03-27 may be redundant).
 - ⚠️ RESEND_API_KEY not added to Vercel — emails won't send until this is done
   → Add in Vercel dashboard: Settings → Environment Variables
 
@@ -50,19 +52,26 @@ Last updated: 2026-03-26 17:44 GMT
 **Status:** Live — https://desert-falcons.vercel.app
 **Repo:** jwebdesignservice/desert-falcons
 **Local:** C:\Users\Jack\Desktop\AI Website\htdocs\Websites\desert-falcons
-**Branch:** main (nightly/2026-03-26 merged, 6 agent-infra files cleaned up)
+**Branch:** main (nightly/2026-03-27 + nightly/2026-03-28 PENDING OPERATOR REVIEW)
 
 ### What's live:
-- 3 passes of full site audit (public + portal)
+- 5 passes of full site audit (public + portal)
 - i18n wrapping across portal pages
 - approved/rejected translation keys fixed in portal-i18n.js
-- Nav-toggle aria-label i18n on all public pages
-- DEV-IN-PROGRESS.md updated with prioritised fix list
+- DEV-IN-PROGRESS.md comprehensive — 5th pass complete, L10 (legal.html) new finding added
+
+### Tonight's agent will fix:
+- M8: Wire jebel-tuwaiq.jpg into vision.css (2-line fix)
+- H1: Add portal nav link to all 9 public pages
+- M6: Add noindex to all 11 portal pages
 
 ### Open items (from DEV-IN-PROGRESS.md):
-- H1 (HIGH): No portal nav link on public site — .nav-portal CSS class exists, just needs HTML on 9 pages
-- M8 (MED): jebel-tuwaiq.jpg not wired into vision.css — 2-line fix, image confirmed present
-- Portal noindex meta missing on all portal pages
+- M2: No canonical links on public pages
+- M3: Join form field show/hide logic not implemented
+- M4: Arabic success state hardcoded English
+- M5: i18n.js load order preventative fix
+- M7: Meta descriptions on portal pages
+- L1: robots.txt + sitemap.xml missing
 - OG images use square logo not hero image
 
 ---
