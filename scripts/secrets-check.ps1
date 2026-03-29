@@ -25,7 +25,7 @@ foreach ($file in $files) {
   $content = Get-Content $file.FullName -Raw -ErrorAction SilentlyContinue
   foreach ($pattern in $patterns) {
     if ($content -match $pattern) {
-      $hits += "⚠️  $($file.FullName) — matches pattern: $pattern"
+      $hits += "WARNING: $($file.FullName) -- matches pattern: $pattern"
     }
   }
 }
@@ -35,5 +35,5 @@ if ($hits.Count -gt 0) {
   $hits | ForEach-Object { Write-Output $_ }
   exit 1
 } else {
-  Write-Output "✅ No secrets found in workspace markdown/text files."
+  Write-Output "OK: No secrets found in workspace markdown/text files."
 }

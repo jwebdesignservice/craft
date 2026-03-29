@@ -17,12 +17,12 @@ foreach ($site in $sites) {
   try {
     $resp = Invoke-WebRequest -Uri $site.url -Method GET -TimeoutSec 10 -UseBasicParsing -ErrorAction Stop
     if ($resp.StatusCode -eq 200) {
-      if (-not $Quiet) { Write-Output "✅ $($site.name) — $($site.url)" }
+      if (-not $Quiet) { Write-Output "OK: $($site.name) -- $($site.url)" }
     } else {
-      $failures += "⚠️ $($site.name) — HTTP $($resp.StatusCode)"
+      $failures += "WARN: $($site.name) -- HTTP $($resp.StatusCode)"
     }
   } catch {
-    $failures += "❌ $($site.name) — $($_.Exception.Message)"
+    $failures += "FAIL: $($site.name) -- $($_.Exception.Message)"
   }
 }
 
@@ -33,5 +33,5 @@ if ($failures.Count -gt 0) {
   exit 1
 } elseif (-not $Quiet) {
   Write-Output ""
-  Write-Output "All sites healthy ✅"
+  Write-Output "All sites healthy."
 }
