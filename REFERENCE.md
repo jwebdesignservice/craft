@@ -1,82 +1,99 @@
-# REFERENCE.md — On-Demand Reference
+# REFERENCE.md — SOPs & Extended Procedures
 
-Not auto-injected. Read when needed. Hard rules, verification protocols, system gotchas.
-
----
-
-## Hard Rules
-
-- **DON'T TRUST, VERIFY** — Never assume. Check files, test commands, verify processes.
-- **NO "DONE" WITHOUT VERIFICATION** — Show results. Confirm deploys visually. Don't just say it worked.
-- **ASK BEFORE ASSUMING** — Ambiguous requirement? Ask one sharp question. Don't guess and silently pivot.
-- **EXPLICIT APPROVAL FIRST** — No structural or code changes without operator approval.
-- No push, deploy, npm install without explicit permission.
-- No silent pivots — if the plan changes, say so before acting.
-- Build before commit. Always. (`npm run build` must pass clean before any commit.)
-- Never commit to main — always a named branch.
+Read this when you need the full detail on a specific operation. Not auto-injected — load on demand.
 
 ---
 
-## Verification Protocols
+## Project Execution Flow
 
-**Frontend/deploy changes:**
-1. Deploy → wait for build complete
-2. Check the specific thing that was changed — don't just confirm "it's up"
-3. Screenshot or curl the live URL if possible
+1. Operators brief Oracle directly in #oracle
+2. Oracle breaks brief into tasks, sends structured task list to George
+3. George creates tasks in Paperclip (`paperclipai issue create`) and assigns to correct agent
+4. Heartbeat scheduler triggers agents with inbox items
+5. Agents execute → output in `paperclip-output/[project]/` → mark task `in_review`
+6. Review watcher fires → operators approve/reject in #george
+7. On approval → George executes Merge SOP
 
-**DB changes:**
-1. Run the migration
-2. Query to confirm the data is there
-3. Test the API endpoint that uses it
+**George's role:** create Paperclip tasks, execute merges. Not strategic planning, not building code outside merge flow.
 
-**Code changes (local):**
-1. `npm run build` — must pass cleanly with no errors or warnings
-2. If running locally: check affected route in browser
-3. Commit only after build passes
+**Create task command:**
+```
+paperclipai issue create \
+  --company-id c5c50fe7-618c-453f-923b-fcfa7baf6f64 \
+  --project-id [id] \
+  --title "[title]" \
+  --description "[full brief]" \
+  --priority [high|medium|low] \
+  --assignee-agent-id [agentId] \
+  --status todo
+```
 
----
-
-## Platform Gotchas
-
-**Vercel:**
-- Env vars added after a deploy don't apply until next deploy. Re-add + fresh deploy.
-- Don't use Vercel logs CLI — it hangs. Use try/catch + error responses in code instead.
-- `@libsql/client` default import fails on Vercel — use `@libsql/client/node`
-- RESEND_API_KEY must be added to Vercel env vars before email integration goes live
-
-**GitHub:**
-- Never push directly to main — always branch + PR or branch + operator-approved merge
-- Build must pass locally before push
-- Remote is `origin` — confirm with `git remote -v` before pushing
-
-**Next.js (App Router):**
-- App Router pages go in `src/app/` (not root `app/`) for this project
-- Both `Navbar.tsx` AND `Footer.tsx` have separate link arrays — update both when adding routes
-- `npm run build` is the source of truth — warnings can cause issues, fix them
-
-**pm2:**
-- `pm2 resurrect` restores saved processes on startup
-- `pm2 save` must be run after any process changes to persist them
-- State file: `C:\Users\Jack\.pm2\dump.pm2`
-
-**Paperclip:**
-- API: http://127.0.0.1:3100/api (canonical port — alert if moved to 3101)
-- Issue update endpoint: `PATCH /api/issues/{id}` (not `/api/companies/{companyId}/issues/{id}`)
-- Wakeup endpoint: `POST /api/agents/{id}/wakeup`
-- CLI context must point to 3100: `paperclipai context set --api-base http://127.0.0.1:3100/api`
-
-**OpenClaw:**
-- Gateway token: `OPENCLAW_TOKEN` env var (persistent user env, set 2026-03-23)
-- Gateway port: 18789
-- Config: `C:\Users\Jack\.openclaw\openclaw.json`
-- Workspace: `C:\Users\Jack\Desktop\AI Website\htdocs\Websites\Project Manager`
+**George → Oracle handoff:**
+Oracle ignores bot messages. To brief Oracle:
+1. Write brief to `oracle-workspace/[BRIEF-NAME].md`
+2. Tell operator to message Oracle: "Read [BRIEF-NAME].md"
 
 ---
 
-## Incidents Log
+## Merge SOP
 
-**2026-03-23** — Oracle session corrupted (broken tool_use chain from Kimi K2 era). Fixed by operator `/reset` in #oracle. Oracle now runs claude-sonnet-4-6.
+Trigger: operator types `merge nightly/YYYY-MM-DD` (or with `[project]`). No action without this command.
 
-**2026-03-23** — Paperclip port drift: `paperclipai run` started on 3101 instead of 3100 due to port conflict. Two instances ran simultaneously. Fixed by killing 3101 orphan and standardising on 3100 via pm2.
+1. Identify project (if ambiguous, ask one question)
+2. Verify branch exists: `git fetch origin && git log origin/nightly/YYYY-MM-DD --oneline -5`
+3. Build on nightly branch: `git checkout nightly/YYYY-MM-DD && npm run build` — if fails, stop and report
+4. Merge: `git checkout main && git pull origin main && git merge nightly/YYYY-MM-DD --no-ff -m "merge: nightly/YYYY-MM-DD — [description]"` — conflict? report exact files, do NOT auto-resolve, stop
+5. Build on main: `npm run build` — if fails: `git reset --hard HEAD~1`, report
+6. Push: `git push origin main`
+7. Deploy: `vercel --prod --token $env:VERCEL_TOKEN` — report live URL
+8. Update Paperclip: mark relevant issues `done`
+9. Post to #george: `✅ Merged nightly/YYYY-MM-DD → main | Live: [url] | Issues closed: [list]`
 
-**2026-03-23** — MEMORY.md had API keys appended — confirmed not tracked in git (gitignored). No leak.
+**Hard rules:**
+- NEVER merge without explicit operator command
+- NEVER deploy without passing post-merge build
+- NEVER auto-resolve conflicts
+
+---
+
+## Reject SOP
+
+Trigger: `reject nightly/YYYY-MM-DD [reason]`
+
+1. `git push origin --delete nightly/YYYY-MM-DD`
+2. Post to #george: `🗑 nightly/YYYY-MM-DD rejected — [reason]. Issue sent back to todo.`
+3. Reset Paperclip issue to `todo` with rejection reason as comment
+
+---
+
+## Nightly Agent Policy
+
+Applies to every nightly agent, every project, every shift.
+
+**Isolation:**
+- Work ONLY on `nightly/YYYY-MM-DD` branch from latest `main`
+- NEVER commit to `main`. NEVER merge. NEVER deploy.
+
+**Iteration loop:**
+1. Make changes
+2. `npm run build`
+3. Pass → commit to nightly branch, report, stop
+4. Fail → `git checkout .`, analyse, try different approach
+5. Max 5 iterations / 45 min budget
+6. No passing build after 5 → document in `GOTCHAS.md`, report failure, do NOT commit broken code
+
+**Morning merge gate:**
+- Synthesis reads nightly output at 4am, posts summary to #george
+- Operators approve (`merge nightly/YYYY-MM-DD`) or reject (`reject nightly/YYYY-MM-DD [reason]`)
+- Nothing reaches main without explicit operator approval
+
+---
+
+## Code & Structural Changes
+
+Read → Understand → Propose → Approval → Execute.
+
+1. Read relevant files first
+2. Check source of truth (actual code, not docs)
+3. State what you found and what you plan — wait for approval
+4. Never create new folder structures without confirming nothing already handles it
