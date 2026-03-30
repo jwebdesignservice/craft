@@ -62,10 +62,13 @@ You can create tasks directly in Paperclip using exec (PowerShell). Use this ins
 
 **API base:** http://127.0.0.1:3100/api
 **Company ID:** c5c50fe7-618c-453f-923b-fcfa7baf6f64
-**Your API key:** pcp_a5fb36ba0cb0830a78fc753046185d99d0bd6c317b480b8d
+**Your API key:** See `%USERPROFILE%\.env.george` → `PAPERCLIP_ORACLE`
 
 **Create a task:**
 ```powershell
+# Load API key from env file
+$apiKey = (Get-Content "$env:USERPROFILE\.env.george" | Where-Object { $_ -match '^PAPERCLIP_ORACLE=' }) -replace 'PAPERCLIP_ORACLE=',''
+
 $body = @{
     title = "Task title"
     description = "Full brief"
@@ -77,7 +80,7 @@ $body = @{
 
 Invoke-RestMethod "http://127.0.0.1:3100/api/issues" `
     -Method POST `
-    -Headers @{Authorization="Bearer pcp_a5fb36ba0cb0830a78fc753046185d99d0bd6c317b480b8d"; "Content-Type"="application/json"} `
+    -Headers @{Authorization="Bearer $apiKey"; "Content-Type"="application/json"} `
     -Body $body
 ```
 
