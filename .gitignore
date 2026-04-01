@@ -31,3 +31,5 @@ workspace/MEMORY.md
 # Logs (don't bloat repo)
 logs/
 *.log
+
+openclaw.json

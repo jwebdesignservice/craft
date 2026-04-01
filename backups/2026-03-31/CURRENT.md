@@ -1,5 +1,5 @@
 # CURRENT.md — Live Project State
-Last updated: 2026-03-31 04:00 GMT (Synthesis Agent — Morning Handover)
+Last updated: 2026-03-30 11:30 GMT (George — token optimisation pass)
 
 ---
 
@@ -20,17 +20,12 @@ Last updated: 2026-03-31 04:00 GMT (Synthesis Agent — Morning Handover)
 **Status:** Live — https://www.primroseevercare.co.uk
 **Repo:** github.com/jwebdesignservice/Primrose-evercare
 **Local:** C:\Users\Jack\Desktop\AI Website\htdocs\Websites\primrose-ever-care
-**Branch:** main
+**Branch:** main (nightly/2026-03-29 merged)
 
-**Pending branches (awaiting operator review):**
-- `nightly/2026-03-30` — JSON-LD LocalBusiness schema added
-- `nightly/2026-03-31` — Performance optimisation (preconnect/dns-prefetch hints)
-
-**Tonight's task:** Code quality audit — final polish pass (build warnings, lint, console.log cleanup, link verification)
+**Tonight's task:** Performance/structured data — JSON-LD LocalBusiness schema, image priority audit, meta description review
 
 **⚠️ Action required:**
 - RESEND_API_KEY not added to Vercel — emails won't send until added (Settings → Environment Variables)
-- Merge queue: `merge nightly/2026-03-30` → then `merge nightly/2026-03-31`
 
 ---
 
@@ -43,20 +38,20 @@ Last updated: 2026-03-31 04:00 GMT (Synthesis Agent — Morning Handover)
 **Pending branches (awaiting operator review):**
 - `nightly/2026-03-28` — 5th audit pass, DEV-IN-PROGRESS.md updated
 - `nightly/2026-03-29` — M8 (tuwaiq bg image), H1 (portal nav link on 9 public pages), M6 (noindex on 11 portal pages)
-- `nightly/2026-03-30` — M7 (portal meta desc), M2 (canonical links), M3 (join form field visibility)
-- `nightly/2026-03-31` — M4 (Arabic success state), L1 (robots.txt + sitemap.xml), M5 (i18n load order)
 
-**Tonight's task:** M1 (OG hero images), PM1 (discussion maxlength), L8 (join button aria-label)
+**Tonight's task:** M3 — Join form conditional field visibility (join-form.js change listener)
 
 **⚠️ Action required:**
-- Merge queue: `merge nightly/2026-03-28` → `nightly/2026-03-29` → `nightly/2026-03-30` → `nightly/2026-03-31`
+- Merge queue: `merge nightly/2026-03-28` → then `merge nightly/2026-03-29`
 - Encoding: public pages are UTF-16 LE, portal pages are UTF-8 — nightly agent briefed
 
 **Open items (from DEV-IN-PROGRESS.md):**
-- M1: OG images use square logo not hero image — tonight's task
-- PM1: Discussion thread inputs missing maxlength — tonight's task
-- L8: Join submit button missing aria-label — tonight's task
-- L2-L7: Low priority polish items
+- M2: No canonical links on public pages
+- M4: Arabic success state hardcoded English
+- M5: i18n.js load order fix
+- M7: Meta descriptions on portal pages
+- L1: robots.txt + sitemap.xml missing
+- OG images use square logo not hero image
 
 ---
 
