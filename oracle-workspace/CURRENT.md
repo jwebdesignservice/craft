@@ -1,5 +1,5 @@
 # CURRENT.md — Live Project State
-Last updated: 2026-04-01 11:12 GMT (Synthesis Agent — Morning Handover)
+Last updated: 2026-04-02 12:46 GMT (Synthesis Agent — Morning Handover)
 
 ---
 
@@ -38,18 +38,18 @@ Project finished. Channels deleted, cron disabled, agent binding removed.
 - `nightly/2026-03-30` — M7 (portal meta desc), M2 (canonical links), M3 (join form field visibility)
 - `nightly/2026-03-31` — M4 (Arabic success state), L1 (robots.txt + sitemap.xml), M5 (i18n load order)
 - `nightly/2026-04-01` — M1 (OG hero images), PM1 (discussion maxlength), L8 (join button aria-label)
+- `nightly/2026-04-02` — PM4 (focus trap on portal mobile menu), PM3 (dashboard activity feed empty state)
 
-**Tonight's task:** PM4 (portal mobile menu focus trap), PM3 (dashboard activity feed empty state)
+**Tonight's task:** PL1 (compress portal login background image) + sweep for any remaining low-priority polish
 
 **⚠️ Action required:**
-- Merge queue: `merge nightly/2026-03-28` → `nightly/2026-03-29` → `nightly/2026-03-30` → `nightly/2026-03-31` → `nightly/2026-04-01`
+- Merge queue: `merge nightly/2026-03-28` → `nightly/2026-03-29` → `nightly/2026-03-30` → `nightly/2026-03-31` → `nightly/2026-04-01` → `nightly/2026-04-02`
+- PM2 (Supabase avatar bucket verification) — requires operator action
 - Encoding: public pages are UTF-16 LE, portal pages are UTF-8 — nightly agent briefed
 
 **Open items (from DEV-IN-PROGRESS.md):**
-- PM4: Portal mobile menu has no focus trap (WCAG) — tonight
-- PM3: Dashboard activity feed empty state — tonight
-- PM2: Verify Supabase avatar bucket setup (operators)
-- PL1: Compress portal login background
+- PM2: Verify Supabase avatar bucket setup (operators — not agent work)
+- PL1: Compress portal login background — tonight
 - L2-L7: Low priority polish items
 
 ---
