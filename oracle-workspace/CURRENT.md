@@ -1,5 +1,5 @@
 # CURRENT.md — Live Project State
-Last updated: 2026-04-04 12:21 GMT (Synthesis Agent — Morning Handover)
+Last updated: 2026-04-07 11:15 GMT (Synthesis Agent — Morning Handover)
 
 ---
 
@@ -41,24 +41,24 @@ Project finished. Channels deleted, cron disabled, agent binding removed.
 - `nightly/2026-04-02` — PM4 (focus trap on portal mobile menu), PM3 (dashboard activity feed empty state)
 - `nightly/2026-04-03` — PL1 (founders-hero.jpg compressed 73%), L5 (removed redundant setTimeout loaders)
 
-**Tonight's task:** Stand down — all automated fixes complete, only operator-verification items remain (confirmed 2026-04-04)
+**Tonight's run (2026-04-07):** No changes — agent confirmed audit queue cleared. Standing down.
 
 **⚠️ Action required:**
 - Merge queue: `merge nightly/2026-03-28` → `nightly/2026-03-29` → `nightly/2026-03-30` → `nightly/2026-03-31` → `nightly/2026-04-01` → `nightly/2026-04-02` → `nightly/2026-04-03`
 - PM2 (Supabase avatar bucket verification) — requires operator action
 - Encoding: public pages are UTF-16 LE, portal pages are UTF-8 — nightly agent briefed
-- 🎯 **Nearly complete:** Only low-priority polish and operator actions remain. All high/medium fixes shipped.
+- 🎯 **COMPLETE:** All HIGH/MEDIUM/LOW automated fixes shipped. Only operator-verification items remain.
 
-**Open items (from DEV-IN-PROGRESS.md):**
-- PM2: Verify Supabase avatar bucket setup (operators — not agent work)
-- PL1: Compress portal login background — tonight
-- L2-L7: Low priority polish items
+**Remaining (operator-only):**
+- PM2: Verify Supabase avatar bucket setup
+- PL2: Add favicon.svg to portal pages (cosmetic)
+- PL3: Verify admin analytics widget in production
 
 ---
 
 ## Nightly Crons
 - Primrose: 379c10e8 — DISABLED (project complete)
-- Desert Falcons: 0a760b2a — 2:30am GMT (active)
+- Desert Falcons: 0a760b2a — 2:30am GMT (STANDING DOWN — no automated work remains)
 - ClauseKit audit: 1dd14aa5 — 3am GMT
 - Synthesis: 4bfaf407 — 4am GMT
 
@@ -72,4 +72,5 @@ Project finished. Channels deleted, cron disabled, agent binding removed.
 
 ## Known Issues
 - Dev agent (f93dc400) heartbeat returning "Agent not found" — recurring, uninvestigated
-- Nightly backup cron (0352286c) — last run status: error (message delivery issue) — monitor tonight
+- Nightly backup cron (0352286c) — last run status: error (message delivery issue) — monitor
+- Debug agent cron may not be running — no DEBUG REPORT found in #george for 2026-04-07
