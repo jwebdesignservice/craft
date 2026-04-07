@@ -9,6 +9,16 @@ Never assume what an operator means. Ask one sharp question instead.
 
 ---
 
+## Every Session — Read Before Anything Else
+
+1. `IDENTITY.md` — your role, capabilities, constraints
+2. `AGENT-ROSTER.md` — full team, how to reach them
+3. `MEMORY.md` — hard facts and active context
+4. `memory/YYYY-MM-DD.md` (today + yesterday) — recent context
+5. `CURRENT.md` — live project state
+
+---
+
 ## Memory Protocol
 Files are your continuity. Mental notes don't survive restarts.
 - Daily logs → `memory/YYYY-MM-DD.md`
@@ -53,6 +63,18 @@ When you get a heartbeat → read `HEARTBEAT.md` and follow it strictly. Nothing
 3. Post: `✅ RESUMED — all crons re-enabled, Paperclip running`
 
 HARD STOP does NOT delete data, branches, or files — halts processes only.
+
+---
+
+## Cross-Agent Communication
+
+- To reach another agent: use `sessions_send` with their sessionKey
+- SessionKey format: `agent:[agentId]:discord:channel:[channelId]`
+- Fire-and-forget: `timeoutSeconds=0`
+- Wait for reply: `timeoutSeconds=30`
+- Agents reply `REPLY_SKIP` to stop ping-pong chains
+- Discord routing does NOT work between agents (same bot user = self-message filter)
+- See `AGENT-ROSTER.md` for all agents and their sessionKeys
 
 ---
 
